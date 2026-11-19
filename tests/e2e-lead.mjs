@@ -16,15 +16,16 @@ const mock = createServer((req, res) => {
 }).listen(MOCK_PORT);
 
 const env = { ...process.env, NO_PROXY: 'localhost,127.0.0.1', no_proxy: 'localhost,127.0.0.1' };
-const wr = spawn('npx', ['wrangler', 'pages', 'dev', 'dist', '--port', String(SITE_PORT), '--ip', '127.0.0.1',
+const wr = process.env.E2E_BASE ? { kill() {}, stdout: { on() {} }, stderr: { on() {} } } : spawn('npx', ['wrangler', 'pages', 'dev', 'dist', '--port', String(SITE_PORT), '--ip', '127.0.0.1',
   '--binding', 'RESEND_API_KEY=test', '--binding', 'LEAD_TO=sales@example.com', '--binding', 'LEAD_FROM=Leads <leads@example.com>',
   '--binding', `RESEND_API_URL=http://127.0.0.1:${MOCK_PORT}/emails`], { env, stdio: ['ignore', 'pipe', 'pipe'] });
 let log = ''; wr.stdout.on('data', (d) => { log += d; }); wr.stderr.on('data', (d) => { log += d; });
-const base = `http://127.0.0.1:${SITE_PORT}`;
+const base = process.env.E2E_BASE || `http://127.0.0.1:${SITE_PORT}`;
 for (let i = 0; i < 60; i++) { try { if ((await fetch(base + '/')).ok) break; } catch { /* starting */ } await new Promise((r) => setTimeout(r, 1000)); }
 
 const browser = await chromium.launch();
 const page = await (await browser.newContext({ viewport: { width: 390, height: 844 } })).newPage();
+page.setDefaultTimeout(20000);
 try {
   // 1. Arrive from a Meta ad, then browse to another page and submit there.
   await page.goto(`${base}/meta/utility-contractors/?utm_source=facebook&utm_medium=paid_social&utm_campaign=utility_contractors&fbclid=FB123`);

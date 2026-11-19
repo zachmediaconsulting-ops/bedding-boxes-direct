@@ -401,3 +401,5 @@ ul, ol { padding-left: 1.3em; }
   .directory__states { grid-column: 1 / -1; }
   .directory__states ul { columns: 6 150px; }
 }
+/* Grid columns may shrink below their content (lets wide tables scroll inside instead of widening the page). */
+.grid-2 > *, .grid-3 > *, .grid-4 > *, .layout-aside > *, .hero > *, .product-hero > * { min-width: 0; }
