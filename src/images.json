@@ -240,9 +240,9 @@
   "small": true
  },
  "bedding-boxes-direct-vertical-poster": {
-  "width": 720,
-  "height": 1280,
-  "small": false
+  "width": 1080,
+  "height": 1920,
+  "small": true
  },
  "bedding-boxes-direct-welding": {
   "width": 1600,

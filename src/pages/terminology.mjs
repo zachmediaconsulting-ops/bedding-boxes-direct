@@ -32,7 +32,7 @@ function termPage(d) {
           <div class="btn-row btn-row--left">${button({ text: 'Request a Quote', href: '#quote' })}${callButton('mountain', { text: 'Call for Pricing', style: 'dark' })}</div>
           ${d.note ? `<p class="hero__note">${esc(d.note)}</p>` : ''}
         </div>
-        <div class="hero__media">${img(d.image, d.imageAlt || d.label, { eager: true, sizes: '(max-width: 899px) 100vw, 40vw' })}</div>
+        <div class="hero__media hero__media--photo">${img(d.image, d.imageAlt || d.label, { eager: true, sizes: '(max-width: 899px) 100vw, 40vw' })}</div>
       </section>`,
       ...d.sections.map((s) => s(c)),
       `<section class="section section--gray" id="sizes"><div class="box">${sectionHead({ kicker: 'Sizes available (3yd – 18yd) & custom order', title: d.sizesTitle })}${productGrid(PRODUCTS)}</div></section>`,

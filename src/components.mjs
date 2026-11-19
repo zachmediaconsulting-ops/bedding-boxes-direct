@@ -42,7 +42,9 @@ export const pageTitle = ({ h1, crumbs = [], text }) => `<section class="page-ti
 
 // ---------- media ----------
 // YouTube video that loads only when clicked (keeps pages fast). Poster comes from YouTube.
-export const youtube = (id = SITE.youtube, title = 'Why choose Bedding Boxes Direct? (90 seconds)') => `<div class="yt" style="background-image:url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)">
+// Thumbnail: YouTube's full-HD frame (maxresdefault), falling back to the standard one if missing.
+export const youtube = (id = SITE.youtube, title = 'Why choose Bedding Boxes Direct? (90 seconds)') => `<div class="yt">
+  <img src="https://i.ytimg.com/vi/${id}/maxresdefault.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/${id}/hqdefault.jpg'">
   <button class="yt__btn" type="button" data-yt="${id}" aria-label="Play video: ${esc(title)}">${icon('play')}</button>
 </div>`;
 

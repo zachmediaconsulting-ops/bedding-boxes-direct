@@ -38,6 +38,12 @@ document.querySelectorAll('[data-bg]').forEach((el) => (bgObserver ? bgObserver.
 // Autoplay muted hero videos only when visible and motion is allowed.
 const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
 document.querySelectorAll('video[data-autoplay]').forEach((v) => { if (!calm) { v.preload = 'metadata'; v.play().catch(() => {}); } });
+// "Turn on sound" button on the homepage video (videos autoplay muted).
+document.querySelectorAll('[data-sound]').forEach((b) => b.addEventListener('click', () => {
+  const v = b.parentElement.querySelector('video');
+  if (!v) return;
+  v.muted = false; v.controls = true; v.play().catch(() => {}); b.hidden = true;
+}));
 // Product photo gallery.
 document.querySelectorAll('.gallery').forEach((g) => {
   const main = g.querySelector('.gallery__main img');

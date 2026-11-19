@@ -30,20 +30,21 @@ const FLEET_BENEFITS = [
 export const page = {
   path: '/', label: 'Home', h1: 'American Made Bedding Boxes for Sale, Available Fast Nationwide.',
   ogImage: 'bedding-boxes-direct-featured-image',
-  preload: '<link rel="preload" as="image" href="/images/bedding-boxes-direct-vertical-poster-800.webp">',
+  preload: '<link rel="preload" as="image" href="/images/bedding-boxes-direct-vertical-poster.webp">',
   render: () => join([
     `<section class="hero">
       <div class="hero__text">
-        <p class="pill">Bedding Boxes for Sale (Stone/Gravel Boxes) · Built for Utility Contractors</p>
-        <h1 class="hero__headline">American Made <span class="accent">Bedding Boxes for Sale</span> Available Fast Nationwide.</h1>
+        <p class="pill">Bedding Boxes for Sale (Stone/Gravel Boxes)</p>
+        <h1 class="hero__headline">American Made<br> <span class="accent nowrap">Bedding Boxes for Sale</span> Available Fast Nationwide.</h1>
         <p class="lead">Heavy-duty stone and gravel bedding boxes that help <strong>utility contractors</strong> keep clean bedding material at the trench, cut loader trips and reduce material waste. ${o.heroText.replace(/<\/?p>/g, '')}</p>
         <div class="btn-row btn-row--left">${button({ text: 'Find Your Size', href: '#sizes' })}${button({ text: 'Request a Quote', href: '/request-a-quote/', style: 'outline' })}</div>
         ${o.heroNote.replace('<p>', '<p class="hero__note">')}
       </div>
       <div class="hero__media">
-        <video src="${SITE.heroVideo}" poster="/images/bedding-boxes-direct-vertical-poster-800.webp" muted loop playsinline preload="none" data-autoplay aria-label="Bedding boxes ready to ship"></video>
+        <video src="${SITE.heroVideo}" poster="/images/bedding-boxes-direct-vertical-poster.webp" muted loop playsinline preload="none" data-autoplay aria-label="Bedding boxes ready to ship"></video>
         <p class="hero__media-text" aria-hidden="true">Ready when<br>you are.</p>
-        <div class="hero__call">${callButton('mountain', { text: 'Call Now' })}</div>
+        <button class="sound-toggle" type="button" data-sound aria-label="Turn on sound">Turn on<br>sound 🔊</button>
+        <a class="hero__call" href="${SITE.phones[0].href}" data-track="phone_click">${img('stacy-swingley-bedding-boxes-direct', '', { sizes: '64px' })}<span class="btn">${icon('phone')}Call Now</span></a>
       </div>
     </section>`,
 
