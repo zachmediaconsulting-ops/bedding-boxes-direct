@@ -1,0 +1,18 @@
+source_path,target_path,status,reason
+/stone-boxes-for-sale-adwords/,/stone-boxes-for-sale/,301,REPLACE - 301 to /stone-boxes-for-sale/
+/utility-contractor-bedding-box-special-offer-001/,/fleet-bedding-box-bundles/,301,REPLACE - 301 to /fleet-bedding-box-bundles/
+/about/,/about-bedding-boxes-direct/,301,KEEP 301
+/cart/,/request-a-quote/,301,RETIRE - 301 to /request-a-quote/
+/category/faqs/,/blog/,301,301 to /blog/
+/category/industries/,/blog/,301,301 to /blog/
+/category/uncategorized/,/blog/,301,301 to /blog/
+/checkout/,/request-a-quote/,301,RETIRE - 301 to /request-a-quote/
+/my-account/,/contact-us/,301,RETIRE - 301 to /contact-us/
+/my-account/lost-password/,/contact-us/,301,RETIRE - 301 to /contact-us/
+/product-category/bedding-boxes-for-sale/,/all-bedding-boxes-for-sale/,301,301 to /all-bedding-boxes-for-sale/
+/product-category/gravel-boxes-for-sale/,/all-bedding-boxes-for-sale/,301,301 to /all-bedding-boxes-for-sale/
+/product-category/stone-boxes-for-sale/,/stone-boxes-for-sale/,301,301 to /stone-boxes-for-sale/
+/product/14-yard-bedding-box/,/product/14-yard-bedding-box-for-sale/,301,KEEP 301
+/shop-all-bedding-boxes-for-sale/,/all-bedding-boxes-for-sale/,301,ADD 301
+/style-guide/,/,301,DO NOT MIGRATE - 301 to /
+/bedding-box-fabrication-company,/bedding-box-fabrication-company/,301,Trailing-slash normalization (linked without slash in header)

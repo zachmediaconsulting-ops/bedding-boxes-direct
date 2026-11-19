@@ -1,0 +1,268 @@
+{
+ "/": {
+  "title": "Bedding Boxes for Sale | Bedding Boxes Direct",
+  "description": "Bedding Boxes For Sale, Available fast with Nationwide Shipping! Our Bedding Boxes are Proudly Made in America with American Steel.",
+  "h1": "Bedding Boxes for Sale (Stone/Gravel Boxes)",
+  "ogImage": "https://www.beddingboxesdirect.com/wp-content/uploads/2025/09/Bedding-Boxes-Direct-Featured-Image-e1758680927675.jpg",
+  "action": "MIGRATE 1:1 (expand)"
+ },
+ "/about-bedding-boxes-direct/": {
+  "title": "About Our Company | Bedding Boxes Direct",
+  "description": "Every bedding box at Bedding Boxes Direct is 100% fabricated here in America, using American steel sourced directly from trusted U.S. mills.",
+  "h1": "About",
+  "ogImage": "https://www.beddingboxesdirect.com/wp-content/uploads/2025/08/Stacy-Swingley-Bedding-Boxes-Direct.jpg",
+  "action": "MIGRATE 1:1 (expand)"
+ },
+ "/all-bedding-boxes-for-sale/": {
+  "title": "Bedding Boxes | Bedding Boxes Direct",
+  "description": "Our Bedding Boxes are manufactured here in the United States with American Steel. Competitively priced and ready to ship nationwide. Shop bedding boxes here.",
+  "h1": "All Bedding Boxes For Sale",
+  "ogImage": "https://www.beddingboxesdirect.com/wp-content/uploads/2025/09/Bedding-Box-Brochure-v2025.jpg",
+  "action": "MIGRATE 1:1 (static catalog)"
+ },
+ "/ar500-bedding-boxes-for-sale/": {
+  "title": "AR500 Bedding Boxes for Sale | Bedding Boxes Direct",
+  "description": "Need a box built for extreme abuse? Our heavy-duty bedding boxes feature reinforced construction, heavier-gauge steel, and optional AR500 steel upgrades in every size.",
+  "h1": "AR500 BEDDING BOXES FOR SALE",
+  "ogImage": "https://www.beddingboxesdirect.com/wp-content/uploads/2025/09/Bedding-Boxes-Direct-Featured-Image-e1758680927675.jpg",
+  "action": "MIGRATE 1:1 (expand)"
+ },
+ "/bedding-box-fabrication-company/": {
+  "title": "Custom Bedding Boxes | Bedding Box Fabrication Company",
+  "description": "Our Bedding Box Fabrication Company builds Custom Bedding Boxes, Special color? Large Quantity? Special Features? Made here in American with American Steel.",
+  "h1": "Need Custom Bedding Boxes? | Bedding Box Fabrication Company",
+  "ogImage": "https://www.beddingboxesdirect.com/wp-content/uploads/2025/10/Custom-Bedding-Boxes.jpg",
+  "action": "MIGRATE 1:1 (expand)"
+ },
+ "/bedding-box-rent-vs-buy-calculator/": {
+  "title": "Rent or Buy a Bedding Box? | Bedding Boxes Direct",
+  "description": "Should you rent or buy a bedding box? Use our calculator to see your real costs over time. Compare monthly rental rates vs purchase price and find your breakeven.",
+  "h1": "Bedding Box Rent vs. Buy Calculator",
+  "ogImage": "https://www.beddingboxesdirect.com/wp-content/uploads/2025/08/7-yard-bedding-box-for-sale-10.jpg",
+  "action": "MIGRATE 1:1 (rebuild tool in vanilla JS)"
+ },
+ "/bedding-boxes-for-municipalities/": {
+  "title": "Bedding Boxes for Municipalities | Bedding Boxes Direct",
+  "description": "Municipalities use bedding boxes to improve trenching efficiency, reduce waste, and manage materials across water, sewer, and road projects. Built to last.",
+  "h1": "Bedding Boxes for Municipalities",
+  "ogImage": "https://www.beddingboxesdirect.com/wp-content/uploads/2025/10/Shop-Bedding-Boxes-1.jpg",
+  "action": "MIGRATE 1:1 (expand)"
+ },
+ "/bedding-boxes-for-trenching/": {
+  "title": "Bedding Boxes for Trenching | Bedding Boxes Direct",
+  "description": "Discover how trenching crews use bedding boxes to move material efficiently, reduce gravel loss, and finish projects faster. Built tough in the USA.",
+  "h1": "Bedding Boxes for Trenching",
+  "ogImage": "https://www.beddingboxesdirect.com/wp-content/uploads/2025/10/Shop-Bedding-Boxes-1.jpg",
+  "action": "MIGRATE 1:1 (expand)"
+ },
+ "/bedding-boxes-for-utility-companies/": {
+  "title": "Bedding Boxes for Utility Companies | Bedding Boxes Direct",
+  "description": "Discover how utility contractors use bedding boxes to improve trenching efficiency, reduce waste, and save on material costs. American-made gravel boxes built tough in the USA.",
+  "h1": "Bedding Boxes for Utility Companies",
+  "ogImage": "https://www.beddingboxesdirect.com/wp-content/uploads/2025/10/Bedding-Boxes-For-Utility-Companies.jpg",
+  "action": "MIGRATE 1:1 (expand)"
+ },
+ "/bedding-boxes/": {
+  "title": "Bedding Boxes | Bedding Boxes Direct | USA Made & Available Now",
+  "description": "Bedding Boxes help utility contractors save money by increasing job site efficiency. Faster jobs with less waste means better margins.",
+  "h1": "Bedding Boxes",
+  "ogImage": "https://www.beddingboxesdirect.com/wp-content/uploads/2025/09/Bedding-Box-Brochure-v2025.jpg",
+  "action": "MIGRATE 1:1 (expand)"
+ },
+ "/blog/": {
+  "title": "Blog | Bedding Boxes Direct",
+  "description": "Learn more about our bedding boxes used for trenching efficiency.",
+  "h1": "USE CASES",
+  "ogImage": "https://www.beddingboxesdirect.com/wp-content/uploads/2025/09/Bedding-Boxes-Direct-Featured-Image-e1758680927675.jpg",
+  "action": "MIGRATE as resources hub"
+ },
+ "/contact-us/": {
+  "title": "Contact Us | Bedding Boxes Direct",
+  "description": "Looking to buy bedding boxes for your next project? Maybe you need something tailored to you? We manufacture bedding boxes and ship nationwide. Contact us today.",
+  "h1": "Contact Us",
+  "ogImage": "https://www.beddingboxesdirect.com/wp-content/uploads/2025/08/Screenshot-2025-08-21-at-7.43.32-PM.jpg",
+  "action": "MIGRATE 1:1 (rebuild form)"
+ },
+ "/fleet-bedding-box-bundles/": {
+  "title": "Bedding Box Bundles | Bedding Boxes Direct",
+  "description": "Fleet Bedding Box Bundles available. Save thousands on mix and match bedding box bundles. Need multi-location shipping? Large orders?",
+  "h1": "10 Bedding Box Bundle | 20 Bedding Box Bundle",
+  "ogImage": "https://www.beddingboxesdirect.com/wp-content/uploads/2025/09/Bedding-Boxes-Direct-Featured-Image-e1758680927675.jpg",
+  "action": "MIGRATE 1:1 (convert to quote request)"
+ },
+ "/privacy-policy/": {
+  "title": "Privacy Policy | Bedding Boxes Direct",
+  "description": "Find our privacy policy here. Learn more about how we use the least amount of data possible to properly show website an to advertise.",
+  "h1": "Privacy Policy",
+  "ogImage": "https://www.beddingboxesdirect.com/wp-content/uploads/2025/09/Bedding-Boxes-Direct-Featured-Image-e1758680927675.jpg",
+  "action": "MIGRATE 1:1"
+ },
+ "/product-category/mini-excavator-bedding-box-for-sale/": {
+  "title": "Mini Excavator Bedding Box Archives | Bedding Boxes Direct | Gravel & Stone Bedding Boxes For Sale",
+  "description": "",
+  "h1": "All Bedding Boxes For Sale",
+  "ogImage": "https://www.beddingboxesdirect.com/wp-content/uploads/2025/09/Bedding-Boxes-Direct-Featured-Image-e1758680927675.jpg",
+  "action": "MIGRATE as dedicated landing page"
+ },
+ "/product/12-yard-bedding-box-for-sale/": {
+  "title": "12 yd Bedding Box for Sale | Bedding Boxes Direct",
+  "description": "12 Yard Bedding Box for Sale - Available Right Away - Shipping Nationwide - These Heavy-Duty Bedding Boxes are American Made with Thicker Gauge American Steel!",
+  "h1": "12 yard bedding box | 12 Yard Bedding Box for Sale. American Made with Heavy-Duty Steel.",
+  "ogImage": "https://www.beddingboxesdirect.com/wp-content/uploads/2025/09/12-yard-bedding-box-for-sale-10.jpg",
+  "action": "MIGRATE 1:1 (quote-request product page)"
+ },
+ "/product/14-yard-bedding-box-for-sale/": {
+  "title": "14 yd Bedding Box for Sale | Bedding Boxes Direct",
+  "description": "14 Yard Bedding Box for Sale - Available Right Away - Shipping Nationwide - These Heavy-Duty Bedding Boxes are American Made with Thicker Gauge American Steel!",
+  "h1": "14 yard bedding box | 14 Yard Bedding Box for Sale. American Made with Heavy-Duty Steel.",
+  "ogImage": "https://www.beddingboxesdirect.com/wp-content/uploads/2025/09/12-yard-bedding-box-for-sale-8.jpg",
+  "action": "MIGRATE 1:1 (quote-request product page)"
+ },
+ "/product/18-yard-bedding-box-for-sale/": {
+  "title": "18 yd Bedding Box for Sale | Bedding Boxes Direct",
+  "description": "18 Yard Bedding Box for Sale - Available Right Away - Shipping Nationwide - These Heavy-Duty Bedding Boxes are American Made with Thicker Gauge American Steel!",
+  "h1": "18 yard bedding box | 18 Yard Bedding Box for Sale. American Made with Heavy-Duty Steel.",
+  "ogImage": "https://www.beddingboxesdirect.com/wp-content/uploads/2025/10/18-yard-bedding-box-for-sale.jpg",
+  "action": "MIGRATE 1:1 (quote-request product page)"
+ },
+ "/product/3-yard-bedding-box-for-sale/": {
+  "title": "3 yd Bedding Box for Sale | Bedding Boxes Direct",
+  "description": "3 Yard Bedding Box for Sale - Available Right Away - Shipping Nationwide - These Heavy-Duty Bedding Boxes are American Made with Thicker Gauge American Steel!",
+  "h1": "3 yard bedding box | 3 Yard Bedding Box for Sale – Made in the USA with American Steel",
+  "ogImage": "https://www.beddingboxesdirect.com/wp-content/uploads/2025/08/3-yard-bedding-box-for-sale-3.jpg",
+  "action": "MIGRATE 1:1 (quote-request product page)"
+ },
+ "/product/5-yard-bedding-box-for-sale/": {
+  "title": "5 yd Bedding Box for Sale | Bedding Boxes Direct",
+  "description": "5 Yard Bedding Box for Sale - Available Right Away - Shipping Nationwide - These Heavy-Duty Bedding Boxes are American Made with Thicker Gauge American Steel!",
+  "h1": "5 yard bedding box | 5 Yard Bedding Box for Sale. American Made with American Steel.",
+  "ogImage": "https://www.beddingboxesdirect.com/wp-content/uploads/2025/08/5-yard-bedding-box-for-sale-7.jpg",
+  "action": "MIGRATE 1:1 (quote-request product page)"
+ },
+ "/product/7-yard-bedding-box-for-sale/": {
+  "title": "7 yd Bedding Box for Sale | Bedding Boxes Direct",
+  "description": "7 Yard Bedding Box for Sale - Available Right Away - Shipping Nationwide - These Heavy-Duty Bedding Boxes are American Made with Thicker Gauge American Steel!",
+  "h1": "7 yard bedding box | 7 Yard Bedding Box for Sale. American Made with American Steel.",
+  "ogImage": "https://www.beddingboxesdirect.com/wp-content/uploads/2025/08/7-yard-bedding-box-for-sale-3.jpg",
+  "action": "MIGRATE 1:1 (quote-request product page)"
+ },
+ "/product/9-yard-bedding-box-for-sale/": {
+  "title": "9 yd Bedding Box for Sale | Bedding Boxes Direct",
+  "description": "9 Yard Bedding Box for Sale - Available Right Away - Shipping Nationwide - These Heavy-Duty Bedding Boxes are American Made with Thicker Gauge American Steel!",
+  "h1": "9 yard bedding box | 9 Yard Bedding Box for Sale. American Made with Heavy-Duty Steel.",
+  "ogImage": "https://www.beddingboxesdirect.com/wp-content/uploads/2025/08/9-yard-bedding-box-for-sale-2.jpg",
+  "action": "MIGRATE 1:1 (quote-request product page)"
+ },
+ "/return-refund-policy/": {
+  "title": "Return & Refund Policy | Bedding Boxes Direct",
+  "description": "Learn our return an refund policy here.",
+  "h1": "Return & Refund Policy | Return & Refund Policy | Summary",
+  "ogImage": "https://www.beddingboxesdirect.com/wp-content/uploads/2025/09/Monkey-selling-bedding-boxes-e1757619004666.jpg",
+  "action": "MIGRATE 1:1"
+ },
+ "/shipping-details/": {
+  "title": "Shipping Details | Bedding Boxes Direct",
+  "description": "Learn more about our shipping policies here. We ship nationwide excluding Alaska & Hawaii.",
+  "h1": "Shipping Details",
+  "ogImage": "https://www.beddingboxesdirect.com/wp-content/uploads/2025/09/Monkey-selling-bedding-boxes-e1757619004666.jpg",
+  "action": "MIGRATE 1:1 (expand)"
+ },
+ "/stone-boxes-for-sale-adwords/": {
+  "title": "Stone Boxes for Sale | Bedding Boxes Direct",
+  "description": "Bedding Boxes Direct provides direct pricing on Stone Boxes. American made with American steel, buy USA Made stone boxes at great prices.",
+  "h1": "Stone Bedding Boxes for SalE",
+  "ogImage": "https://www.beddingboxesdirect.com/wp-content/uploads/2025/09/12-yard-bedding-box-for-sale-7-1024x684.jpg",
+  "action": "REPLACE - 301 to /stone-boxes-for-sale/"
+ },
+ "/utility-contractor-bedding-box-special-offer-001/": {
+  "title": "Utility Contractor Multi-Box Discount | Bedding Boxes Direct",
+  "description": "Bedding Box Multi-Box Discount. Split shipments across the United States to different job sites. Save thousands order Bedding Boxes Direct.",
+  "h1": "Utility Contractor Multi-Bedding Box Discount",
+  "ogImage": "https://www.beddingboxesdirect.com/wp-content/uploads/2025/09/Bedding-Boxes-Direct-Featured-Image-e1758680927675.jpg",
+  "action": "REPLACE - 301 to /fleet-bedding-box-bundles/"
+ },
+ "/what-is-a-bedding-box-used-for/": {
+  "title": "What is a Bedding Box Used for? | Bedding Boxes Direct",
+  "description": "Learn what a bedding box is used for in excavation, trenching, and utility work. See how gravel boxes improve efficiency, reduce waste, and protect your bottom line.",
+  "h1": "What is a bedding box used for?",
+  "ogImage": "https://www.beddingboxesdirect.com/wp-content/uploads/2025/10/What-are-Bedding-boxes-used-for.jpg",
+  "action": "MIGRATE 1:1 (expand)"
+ },
+ "/what-size-bedding-box-do-i-need/": {
+  "title": "What Size Bedding Box Do I Need? | Bedding Boxes Direct",
+  "description": "Find the right bedding box size for your excavation or utility project. Compare 10–18 yard gravel boxes, see what fits your excavator, and learn how to boost efficiency.",
+  "h1": "What Size Bedding Box Do I Need?",
+  "ogImage": "https://www.beddingboxesdirect.com/wp-content/uploads/2025/09/12-yard-bedding-box-for-sale-8.jpg",
+  "action": "MIGRATE 1:1 (expand)"
+ },
+ "/cart/": {
+  "title": "Cart | Bedding Boxes Direct",
+  "description": "View your cart and purchase Bedding Boxes here.",
+  "h1": "Cart",
+  "ogImage": "https://www.beddingboxesdirect.com/wp-content/uploads/2025/09/Bedding-Boxes-Direct-Featured-Image-e1758680927675.jpg",
+  "action": "RETIRE - 301 to /request-a-quote/"
+ },
+ "/category/faqs/": {
+  "title": "FAQ's Archives | Bedding Boxes Direct | Gravel & Stone Bedding Boxes For Sale",
+  "description": "",
+  "h1": "FAQ’s",
+  "ogImage": "https://www.beddingboxesdirect.com/wp-content/uploads/2025/09/Bedding-Boxes-Direct-Featured-Image-e1758680927675.jpg",
+  "action": "301 to /blog/"
+ },
+ "/category/industries/": {
+  "title": "Industries Archives | Bedding Boxes Direct | Gravel & Stone Bedding Boxes For Sale",
+  "description": "",
+  "h1": "Industries",
+  "ogImage": "https://www.beddingboxesdirect.com/wp-content/uploads/2025/09/Bedding-Boxes-Direct-Featured-Image-e1758680927675.jpg",
+  "action": "301 to /blog/"
+ },
+ "/category/uncategorized/": {
+  "title": "Uncategorized Archives | Bedding Boxes Direct | Gravel & Stone Bedding Boxes For Sale",
+  "description": "",
+  "h1": "Uncategorized",
+  "ogImage": "https://www.beddingboxesdirect.com/wp-content/uploads/2025/09/Bedding-Boxes-Direct-Featured-Image-e1758680927675.jpg",
+  "action": "301 to /blog/"
+ },
+ "/my-account/": {
+  "title": "My Account",
+  "description": "View and edit your account Bedding Boxes Direct details here.",
+  "h1": "My Account",
+  "ogImage": "https://www.beddingboxesdirect.com/wp-content/uploads/2025/09/Bedding-Boxes-Direct-Featured-Image-e1758680927675.jpg",
+  "action": "RETIRE - 301 to /contact-us/"
+ },
+ "/my-account/lost-password/": {
+  "title": "My Account",
+  "description": "View and edit your account Bedding Boxes Direct details here.",
+  "h1": "My Account",
+  "ogImage": "https://www.beddingboxesdirect.com/wp-content/uploads/2025/09/Bedding-Boxes-Direct-Featured-Image-e1758680927675.jpg",
+  "action": "RETIRE - 301 to /contact-us/"
+ },
+ "/product-category/bedding-boxes-for-sale/": {
+  "title": "Bedding Boxes Archives | Bedding Boxes Direct | Gravel & Stone Bedding Boxes For Sale",
+  "description": "",
+  "h1": "All Bedding Boxes For Sale",
+  "ogImage": "https://www.beddingboxesdirect.com/wp-content/uploads/2025/09/Bedding-Boxes-Direct-Featured-Image-e1758680927675.jpg",
+  "action": "301 to /all-bedding-boxes-for-sale/"
+ },
+ "/product-category/gravel-boxes-for-sale/": {
+  "title": "Gravel Boxes Archives | Bedding Boxes Direct | Gravel & Stone Bedding Boxes For Sale",
+  "description": "",
+  "h1": "All Bedding Boxes For Sale",
+  "ogImage": "https://www.beddingboxesdirect.com/wp-content/uploads/2025/09/Bedding-Boxes-Direct-Featured-Image-e1758680927675.jpg",
+  "action": "301 to /all-bedding-boxes-for-sale/"
+ },
+ "/product-category/stone-boxes-for-sale/": {
+  "title": "Stone Boxes Archives | Bedding Boxes Direct | Gravel & Stone Bedding Boxes For Sale",
+  "description": "",
+  "h1": "All Bedding Boxes For Sale",
+  "ogImage": "https://www.beddingboxesdirect.com/wp-content/uploads/2025/09/Bedding-Boxes-Direct-Featured-Image-e1758680927675.jpg",
+  "action": "301 to /stone-boxes-for-sale/"
+ },
+ "/style-guide/": {
+  "title": "Style Guide | Bedding Boxes Direct",
+  "description": "Download Bedding Boxes Direct official logos, colors and fonts for use in compliant marketing.",
+  "h1": "Style Guide | Oswald UPPERCASE | Rubik",
+  "ogImage": "https://www.beddingboxesdirect.com/wp-content/uploads/2025/08/Bedding-Boxes-Direct-Logo-2424px-Blue.png",
+  "action": "DO NOT MIGRATE - 301 to /"
+ }
+}
