@@ -74,3 +74,43 @@ export const FOOTER = [
 ];
 
 export const LEGAL = [['Privacy Policy', '/privacy-policy/'], ['Return & Refund Policy', '/return-refund-policy/'], ['Shipping Details', '/shipping-details/']];
+
+// FOOTER SITE DIRECTORY — every public page, so all pages are reachable from the footer.
+// The build fails if a page is missing here (except ad landing pages, thank-you and 404).
+import { INDUSTRIES } from './industries.mjs';
+import { US_STATES, statePath } from '../data/states.mjs';
+
+export const DIRECTORY = [
+  {
+    title: 'Bedding Boxes', links: [
+      ['All Bedding Boxes', '/all-bedding-boxes-for-sale/'], ['Bedding Boxes', '/bedding-boxes/'],
+      ...PRODUCTS.map((p) => [`${p.size} Yard Bedding Box`, p.path]),
+      ['Mini Excavator Bedding Box', '/product-category/mini-excavator-bedding-box-for-sale/'],
+      ['Custom Bedding Boxes', '/bedding-box-fabrication-company/'], ['AR500 Bedding Boxes', '/ar500-bedding-boxes-for-sale/'],
+    ],
+  },
+  {
+    title: 'Equipment Guides', links: [
+      ['Gravel Boxes for Sale', '/gravel-boxes-for-sale/'], ['Stone Boxes for Sale', '/stone-boxes-for-sale/'],
+      ['Excavator Bedding Boxes', '/excavator-bedding-boxes/'], ['Pipe Bedding Boxes', '/pipe-bedding-boxes/'],
+      ['Stone Mizer Alternative', '/stone-mizer-alternative/'],
+    ],
+  },
+  {
+    title: 'Industries', links: [
+      ['All Industries', '/industries/'], ['Utility Contractors', '/bedding-boxes-for-utility-companies/'],
+      ['Trenching', '/bedding-boxes-for-trenching/'], ['Municipalities', '/bedding-boxes-for-municipalities/'],
+      ...INDUSTRIES.map((i) => [i.label, i.path]),
+    ],
+  },
+  {
+    title: 'Volume Deals & Company', links: [
+      ['Fleet Bundles', '/fleet-bedding-box-bundles/'], ['Request a Quote', '/request-a-quote/'],
+      ['About Us', '/about-bedding-boxes-direct/'], ['Contact Us', '/contact-us/'],
+      ['Resources', '/blog/'], ['What is a bedding box used for?', '/what-is-a-bedding-box-used-for/'],
+      ['What size bedding box do I need?', '/what-size-bedding-box-do-i-need/'], ['Rent vs. Buy Calculator', '/bedding-box-rent-vs-buy-calculator/'],
+      ['Shipping Details', '/shipping-details/'], ['Privacy Policy', '/privacy-policy/'], ['Return & Refund Policy', '/return-refund-policy/'],
+    ],
+  },
+  { title: 'Bedding Boxes for Sale by State', states: true, links: [['All States', '/bedding-boxes-for-sale/'], ...US_STATES.map((s) => [s.name, statePath(s)])] },
+];

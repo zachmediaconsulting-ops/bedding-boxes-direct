@@ -1,7 +1,7 @@
 // The page shell: <head> with all SEO tags, top bar, header + menu, footer, mobile call/quote bar.
 import { esc, icon, img, imageUrl } from './lib.mjs';
 import { SITE, mainPhone, phone as phoneFor } from './site.mjs';
-import { NAV, FOOTER, LEGAL } from './content/navigation.mjs';
+import { NAV, FOOTER, LEGAL, DIRECTORY } from './content/navigation.mjs';
 import { TRACKING, TURNSTILE_SITE_KEY, clientConfig } from './tracking.mjs';
 
 const cur = (href, path) => (href === path ? ' aria-current="page"' : '');
@@ -34,6 +34,9 @@ function footer(path) {
     ${FOOTER.map((c) => `<nav aria-label="${esc(c.title)}"><h2>${esc(c.title)}</h2><ul>${c.links.map(([l, h]) => `<li><a href="${h}"${cur(h, path)}>${esc(l)}</a></li>`).join('')}</ul></nav>`).join('')}
     <div><h2>Office Hours</h2><p>${esc(SITE.phones[0].hours)}<br>${esc(SITE.phones[1].hours)}</p><p>${esc(SITE.address.city)}, ${esc(SITE.address.region)}<br>Nationwide shipping (continental US)</p></div>
   </div>
+  <nav class="box directory" aria-label="Site directory">
+    ${DIRECTORY.map((g) => `<details${g.states ? ' class="directory__states"' : ''} open><summary>${esc(g.title)}</summary><ul>${g.links.map(([l, h]) => `<li><a href="${h}"${cur(h, path)}>${esc(l)}</a></li>`).join('')}</ul></details>`).join('')}
+  </nav>
   <div class="box"><div class="footer__bottom"><span>©${new Date().getFullYear()} ${esc(SITE.parentCompany)}</span><span>${LEGAL.map(([l, h]) => `<a href="${h}">${esc(l)}</a>`).join(' · ')}</span></div></div>
 </footer>`;
 }

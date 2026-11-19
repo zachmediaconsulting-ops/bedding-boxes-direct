@@ -387,3 +387,17 @@ ul, ol { padding-left: 1.3em; }
 
 @media print { .topbar, .header, .footer, .mobile-cta { display: none; } }
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; transition: none !important; } }
+
+/* ---------- footer site directory (every page) ---------- */
+.directory { display: grid; gap: 8px 32px; margin-top: 44px; padding-top: 32px; border-top: 1px solid var(--gray-3); font-size: 14px; }
+.directory summary { font: 500 15px/1.3 var(--head); text-transform: uppercase; color: var(--ink); cursor: pointer; padding: 8px 0; }
+.directory ul { margin: 4px 0 12px; }
+.directory li { margin: 0 0 6px; }
+.directory__states ul { columns: 2 140px; column-gap: 24px; }
+@media (min-width: 768px) {
+  .directory { grid-template-columns: repeat(4, 1fr); }
+  .directory summary { pointer-events: none; list-style: none; }
+  .directory summary::-webkit-details-marker { display: none; }
+  .directory__states { grid-column: 1 / -1; }
+  .directory__states ul { columns: 6 150px; }
+}
