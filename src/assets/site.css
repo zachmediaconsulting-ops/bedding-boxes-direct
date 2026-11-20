@@ -613,3 +613,9 @@ ul, ol { padding-left: 1.3em; }
   /* boxed grids keep the full-width background */
   .mega__grid.box { max-width: none; padding-left: max(20px, calc((100vw - var(--box)) / 2 + 20px)); padding-right: max(20px, calc((100vw - var(--box)) / 2 + 20px)); }
 }
+/* Ad pages: video right under the headline in the hero */
+.lp-video { margin: 4px 0 22px; max-width: 640px; }
+.lp-video .yt { border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,.35); }
+/* Ad pages: header phone button stays on one line on phones */
+.lp-header .header__cta { white-space: nowrap; }
+@media (max-width: 520px) { .lp-header .logo img { width: 140px; } .lp-header .header__cta { font-size: 17px; padding: 10px 16px; min-height: 0; } }
