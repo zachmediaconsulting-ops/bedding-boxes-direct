@@ -154,9 +154,9 @@ document.querySelectorAll('form[data-lead-form]').forEach((form) => {
     let total = 0; const parts = [];
     sizeRows.forEach((row) => {
       const cb = row.querySelector('input[type=checkbox]'); const q = row.querySelector('.size-qty');
-      if (q) { q.hidden = !cb.checked; q.disabled = !cb.checked; if (cb.checked && !q.value) q.value = 1; if (!cb.checked) q.value = ''; }
+      if (q) { q.hidden = !cb.checked; q.disabled = !cb.checked; if (!cb.checked) q.value = ''; }
       if (!cb.checked) return;
-      const n = q ? parseInt(q.value, 10) || 0 : 0;
+      const n = q ? parseInt(q.value || (document.activeElement === q ? q.dataset.prev : ''), 10) || 0 : 0;
       total += n;
       parts.push(q ? `${n || '?'} × ${cb.dataset.label}` : cb.dataset.label);
     });
@@ -175,7 +175,24 @@ document.querySelectorAll('form[data-lead-form]').forEach((form) => {
     if (summary) { summary.hidden = !bits.length; summary.innerHTML = bits.length ? `<span class="form-summary__title">Your request</span> ${bits.join(' · ')}${hint ? `<span class="form-summary__hint">${hint}</span>` : ''}` : ''; }
     if (form.elements.inquiry_type && bundle) form.elements.inquiry_type.value = `bundle_${bundle}`;
   }
-  form.addEventListener('change', (e) => { if (e.target.matches('input[name="sizes"], input[name="bundle"]')) refresh(e.target.name === 'bundle'); });
+  form.addEventListener('change', (e) => {
+    if (!e.target.matches('input[name="sizes"], input[name="bundle"]')) return;
+    // Ticking a size starts its count at 1 (only at that moment, so the box can be cleared and retyped).
+    if (e.target.name === 'sizes' && e.target.checked) { const q = e.target.closest('.size-check')?.querySelector('.size-qty'); if (q && !q.value) q.value = 1; }
+    refresh(e.target.name === 'bundle');
+  });
+  // Tapping a count box selects its number, so typing replaces it instead of adding digits.
+  form.addEventListener('focusin', (e) => {
+    const t = e.target;
+    if (t.matches('.size-qty')) { t.dataset.prev = t.value || '1'; t.placeholder = t.dataset.prev; t.value = ''; }
+    else if (t.matches('[name="quantity"]') && !t.readOnly) setTimeout(() => t.select(), 0);
+  });
+  // An emptied count box falls back to 1 when the visitor leaves it.
+  // Leaving a count box empty puts back the number it had.
+  form.addEventListener('focusout', (e) => {
+    const t = e.target;
+    if (t.matches('.size-qty') && !t.disabled) { if (!t.value) t.value = t.dataset.prev || 1; t.placeholder = 'Qty'; refresh(false); }
+  });
   form.addEventListener('input', (e) => { if (e.target.matches('.size-qty, [name="quantity"]')) refresh(false); });
   form.selectBundle = (v) => { const r = form.querySelector(`input[name="bundle"][value="${v}"]`); if (r) { r.checked = true; refresh(true); } };
   // Links like /request-a-quote/?size=9 or ?bundle=10 pre-select the form.

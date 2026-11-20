@@ -671,3 +671,5 @@ ul, ol { padding-left: 1.3em; }
 .size-checks { grid-template-columns: repeat(auto-fill, minmax(175px, 1fr)); }
 .size-check label { white-space: nowrap; }
 .size-check .size-qty { width: 58px; flex: none; }
+/* iPhone zooms into any form field under 16px; keep every field at 16px+ so the page never jumps. */
+input, select, textarea, .size-check .size-qty, .mega-calc select, .mega-calc input, .field input, .field select, .field textarea { font-size: 16px !important; }
