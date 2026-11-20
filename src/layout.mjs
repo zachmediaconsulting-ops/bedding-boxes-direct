@@ -38,7 +38,7 @@ function footer(path) {
 <section class="sitemap-band" aria-label="Sitemap">
   <div class="box">
     <h2 class="sitemap-band__title">Sitemap</h2>
-    <ul class="sitemap-band__list">${[...new Map(DIRECTORY.flatMap((g) => g.links).map(([l, h]) => [h, l])).entries()].map(([h, l]) => `<li><a href="${h}"${cur(h, path)}>${esc(l)}</a></li>`).join('')}</ul>
+    <div class="sitemap-band__groups">${DIRECTORY.map((g) => `<nav class="sitemap-band__group${g.states ? ' sitemap-band__group--states' : ''}" aria-label="${esc(g.title)}"><h3>${esc(g.title)}</h3><ul>${g.links.map(([l, h]) => `<li><a href="${h}"${cur(h, path)}>${esc(l)}</a></li>`).join('')}</ul></nav>`).join('')}</div>
     <div class="sitemap-band__bottom"><span>©${new Date().getFullYear()} ${esc(SITE.parentCompany)}</span><span>${LEGAL.map(([l, h]) => `<a href="${h}">${esc(l)}</a>`).join(' · ')}</span></div>
   </div>
 </section>`;

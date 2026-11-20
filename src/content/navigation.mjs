@@ -50,14 +50,6 @@ export const NAV = [
 // Footer columns (same headings as the original footer: Site Map / Industries Served / Additional Info).
 export const FOOTER = [
   {
-    title: 'Site Map', links: [
-      ['All Bedding Boxes', '/all-bedding-boxes-for-sale/'], ['7 Yard Bedding Boxes', '/product/7-yard-bedding-box-for-sale/'],
-      ['9 Yard Bedding Boxes', '/product/9-yard-bedding-box-for-sale/'], ['12 Yard Bedding Boxes', '/product/12-yard-bedding-box-for-sale/'],
-      ['Custom Bedding Boxes', '/bedding-box-fabrication-company/'], ['AR500 Bedding Boxes', '/ar500-bedding-boxes-for-sale/'],
-      ['Fleet Bundles', '/fleet-bedding-box-bundles/'], ['Request a Quote', '/request-a-quote/'],
-    ],
-  },
-  {
     title: 'Industries Served', links: [
       ['Utilities', '/bedding-boxes-for-utility-companies/'], ['Trenching', '/bedding-boxes-for-trenching/'],
       ['Municipalities', '/bedding-boxes-for-municipalities/'], ['Excavating', '/industries/excavation-contractors/'],
