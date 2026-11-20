@@ -566,3 +566,6 @@ ul, ol { padding-left: 1.3em; }
 .link-card__body { padding: 24px 24px 26px; display: flex; flex-direction: column; height: 100%; }
 .link-card__body br { display: none; }
 .link-card__more { margin-top: auto; padding-top: 12px; }
+/* Link cards: no red top border, soft #f7f7f7 fill. On gray sections they use white so they stay visible. */
+.link-card { border: 0; border-top: 0; background: #f7f7f7; }
+.section--gray .link-card { background: #fff; }
