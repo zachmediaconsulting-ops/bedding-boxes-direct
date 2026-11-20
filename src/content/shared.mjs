@@ -22,3 +22,31 @@ export const FIT_TABLE = [
 
 // Statement used everywhere bedding boxes are compared to trench protection (Phase 16 safeguard).
 export const NOT_SHORING = 'A bedding box is a steel container for handling and staging bedding material. It is not trench protection and is not a substitute for a trench shield, trench box or shoring system. Follow OSHA excavation standards (29 CFR 1926 Subpart P) and keep the box a safe distance from the trench edge.';
+
+// RENTAL FLEET PROFITABILITY EXAMPLES — illustrative calculations, NOT customer stories.
+// Inputs: our list prices + bundle discounts (src/data), a published regional rental rate sheet
+// (rock box ≈ $900 per 4 weeks for 7–7.5 yd, ≈ $1,200 per 4 weeks for 9 yd), 13 four-week periods
+// per year, and 65% time utilization (common industry target of 65–75%). Edit RATES/UTIL to update.
+import { productBySize } from '../data/products.mjs';
+import { BUNDLES } from '../data/offers.mjs';
+export const RENTAL_ASSUMPTIONS = { rate4wk: { 7: 900, 9: 1200 }, periods: 13, util: 0.65 };
+const usd = (n) => '$' + Math.round(n).toLocaleString('en-US');
+export function rentalExamples() {
+  const { rate4wk: R, periods: P, util: U } = RENTAL_ASSUMPTIONS;
+  const p7 = productBySize(7).price, p9 = productBySize(9).price;
+  const [b10, b20] = BUNDLES;
+  // 1) one 9-yard box
+  const rev9 = R[9] * P * U, months9 = (p9 / (R[9] * U)) * 12 / 13;
+  // 2) 10-box mixed bundle: five 7 yd + five 9 yd
+  const list10 = 5 * p7 + 5 * p9, save10 = list10 * b10.discount / 100, cost10 = list10 - save10;
+  const rev10 = (5 * R[7] + 5 * R[9]) * P * U, months10 = (cost10 / ((5 * R[7] + 5 * R[9]) * U)) * 12 / 13;
+  // 3) 20 x 9-yard across branches: value of +10 points of utilization
+  const list20 = 20 * p9, save20 = list20 * b20.discount / 100, cost20 = list20 - save20;
+  const rev20 = 20 * R[9] * P * U, lift = 20 * R[9] * P * 0.10;
+  return [
+    { label: 'One 9-Yard Box: Payback Math', text: `A 9-yard box lists at ${usd(p9)}. At a rental rate of ${usd(R[9])} per 4 weeks and ${Math.round(U * 100)}% time utilization, it brings in about ${usd(R[9] * U)} per 4-week period, or roughly ${usd(rev9)} a year. That pays back the purchase price in about ${months9.toFixed(0)} months, and every rental after that is margin for the life of the box.` },
+    { label: '10-Box Mixed Bundle: Stocking a Branch', text: `Five 7-yard and five 9-yard boxes list at ${usd(list10)}. The ${b10.boxes}-box bundle takes ${b10.discount}% off, saving ${usd(save10)} up front for a total of ${usd(cost10)}. At ${usd(R[7])} and ${usd(R[9])} per 4 weeks and ${Math.round(U * 100)}% utilization, the ten boxes can generate about ${usd(rev10)} a year, paying back in roughly ${months10.toFixed(0)} months.` },
+    { label: '20 Boxes Across Branches: Why Durability Pays', text: `Twenty 9-yard boxes list at ${usd(list20)}; the ${b20.boxes}-box bundle saves ${b20.discount}% (${usd(save20)}), for ${usd(cost20)}. At ${Math.round(U * 100)}% utilization they can earn about ${usd(rev20)} a year. Every 10 points of utilization you add, by keeping boxes out of the repair bay and back on rent, is worth about ${usd(lift)} more per year across the fleet. That is why thicker steel, reinforced corners and welded skid plates matter.`, highlight: true },
+  ];
+}
+export const RENTAL_NOTE = 'Illustrative examples, not customer results. Based on Bedding Boxes Direct list prices and bundle discounts, a published regional rental rate sheet (about $900 per 4 weeks for 7–7.5 yd and $1,200 per 4 weeks for 9 yd rock boxes), 13 four-week periods per year and 65% time utilization (a common rental-industry target is 65–75%). Freight, taxes, maintenance and your local rates are not included and will change the results.';

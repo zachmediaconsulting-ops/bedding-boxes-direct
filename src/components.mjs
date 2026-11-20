@@ -122,8 +122,8 @@ export const flagBand = ({ kicker = 'Why buy from us?', title, text, image = 'we
 </section>`;
 
 // Case studies / use cases from the original site. Kept word-for-word; labelled as customer examples.
-export const cases = (items, { note = true } = {}) => `<div class="cases">${items.map((c) => `<figure class="case${c.highlight ? ' case--highlight' : ''}"><blockquote style="margin:0"><p>${c.text}</p></blockquote><figcaption class="case__label">${esc(c.label)}</figcaption></figure>`).join('')}</div>
-${note ? '<p class="disclaimer" style="margin-top:16px">Customer use cases as reported to Bedding Boxes Direct. Results depend on the project, crew and equipment and are not independently verified.</p>' : ''}`;
+export const cases = (items, { note = true, noteText = 'Customer use cases as reported to Bedding Boxes Direct. Results depend on the project, crew and equipment and are not independently verified.' } = {}) => `<div class="cases">${items.map((c) => `<figure class="case${c.highlight ? ' case--highlight' : ''}"><blockquote style="margin:0"><p>${c.text}</p></blockquote><figcaption class="case__label">${esc(c.label)}</figcaption></figure>`).join('')}</div>
+${note ? `<p class="disclaimer" style="margin-top:16px">${noteText}</p>` : ''}`;
 
 export function linkCards({ pages, heading, kicker, text, gray = true, id }) {
   return `<section class="section${gray ? ' section--gray' : ''}"${id ? ` id="${id}"` : ''}><div class="box">

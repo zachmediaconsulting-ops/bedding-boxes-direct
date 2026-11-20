@@ -4,7 +4,7 @@ import { esc, icon, img, join } from '../lib.mjs';
 import { PRODUCTS, priceText } from '../data/products.mjs';
 import { BUNDLES } from '../data/offers.mjs';
 import { CAMPAIGNS } from '../content/campaigns.mjs';
-import { caseByLabel } from '../content/shared.mjs';
+import { caseByLabel, rentalExamples, RENTAL_NOTE } from '../content/shared.mjs';
 import { bundleTeaser, button, cases, featureList, leadForm, phonePair, productGrid, sectionHead, youtube } from '../components.mjs';
 
 function campaignPage(d) {
@@ -38,7 +38,9 @@ function campaignPage(d) {
         <div class="rounded">${img('welder-welding-bedding-box', 'Welder building a bedding box with American steel', { sizes: '(max-width: 767px) 100vw, 540px' })}</div>
         <div><p class="kicker">American made with American steel</p><h2>Built Heavy. Built Here.</h2>${featureList()}</div>
       </div></section>`,
-      ex ? `<section class="section"><div class="box box--narrow">${sectionHead({ kicker: 'Customer use case', title: ex.label })}${cases([ex])}</div></section>` : '',
+      d.audience === 'rental_fleet'
+        ? `<section class="section"><div class="box">${sectionHead({ kicker: 'Rental fleet profitability', title: 'The [Rental Math]', text: 'How bedding boxes pay for themselves in a rental fleet, worked out from our list prices and published market rental rates.' })}<div class="cases cases--3">${cases(rentalExamples(), { noteText: RENTAL_NOTE })}</div></div></section>`
+        : ex ? `<section class="section"><div class="box box--narrow">${sectionHead({ kicker: 'Customer use case', title: ex.label })}${cases([ex])}</div></section>` : '',
       `<section class="cta-band cta-band--red"><h2>Talk to Our Sales Team Today</h2><p>Mon–Fri. A real person answers.</p>${phonePair('btn--dark')}<div class="btn-row">${button({ text: d.formTitle, href: '#get-quote', style: 'white' })}</div></section>`,
     ]),
   };
