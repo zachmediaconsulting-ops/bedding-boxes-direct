@@ -39,7 +39,9 @@ function campaignPage(d) {
         <div><p class="kicker">American made with American steel</p><h2>Built Heavy. Built Here.</h2>${featureList()}</div>
       </div></section>`,
       d.audience === 'rental_fleet'
-        ? `<section class="section"><div class="box">${sectionHead({ kicker: 'Rental fleet profitability', title: 'The [Rental Math]', text: 'How bedding boxes pay for themselves in a rental fleet, worked out from our list prices and published market rental rates.' })}<div class="cases cases--3">${cases(rentalExamples(), { noteText: RENTAL_NOTE })}</div></div></section>`
+        ? `<section class="section"><div class="box">${sectionHead({ kicker: 'Rental fleet profitability', title: 'The [Rental Math]', text: 'How bedding boxes pay for themselves in a rental fleet, worked out from our list prices and published market rental rates.' })}
+          <div class="grid-3 roi">${rentalExamples().map((x) => `<div class="roi-card${x.highlight ? ' roi-card--featured' : ''}"><h3>${esc(x.label)}</h3><p class="roi-card__stat">${esc(x.stat)}</p><p class="roi-card__stat-label">${esc(x.statLabel)}</p><dl>${x.lines.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl><p class="roi-card__text">${esc(x.text)}</p></div>`).join('')}</div>
+          <p class="disclaimer" style="margin-top:20px;text-align:center;max-width:900px;margin-inline:auto">${esc(RENTAL_NOTE)}</p></div></section>`
         : ex ? `<section class="section"><div class="box box--narrow">${sectionHead({ kicker: 'Customer use case', title: ex.label })}${cases([ex])}</div></section>` : '',
       `<section class="cta-band cta-band--red"><h2>Talk to Our Sales Team Today</h2><p>Mon–Fri. A real person answers.</p>${phonePair('btn--dark')}<div class="btn-row">${button({ text: d.formTitle, href: '#get-quote', style: 'white' })}</div></section>`,
     ]),

@@ -623,3 +623,15 @@ ul, ol { padding-left: 1.3em; }
 .section--gray .product-card--simple { background: #fff; }
 @media (min-width: 900px) { .cases--3 .cases { grid-template-columns: repeat(3, 1fr); } }
 .cases--3 .case { background: #f7f7f7; }
+/* Rental math cards */
+.roi { align-items: stretch; }
+.roi-card { background: #f7f7f7; border: 2px solid transparent; border-radius: var(--radius); padding: 28px; display: flex; flex-direction: column; }
+.roi-card--featured { border-color: var(--red); background: #fff; }
+.roi-card h3 { font-size: 24px; margin: 0 0 12px; }
+.roi-card__stat { font: 700 40px/1 var(--head); color: var(--red); margin: 0; }
+.roi-card__stat-label { font-size: 14px; margin: 6px 0 18px; }
+.roi-card dl { margin: 0 0 16px; }
+.roi-card dl div { display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-top: 1px solid var(--gray-2); font-size: 15px; }
+.roi-card dt { color: var(--text); }
+.roi-card dd { margin: 0; font-weight: 600; color: var(--ink); text-align: right; white-space: nowrap; }
+.roi-card__text { font-size: 15px; margin: auto 0 0; }

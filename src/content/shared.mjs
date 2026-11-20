@@ -43,10 +43,17 @@ export function rentalExamples() {
   // 3) 20 x 9-yard across branches: value of +10 points of utilization
   const list20 = 20 * p9, save20 = list20 * b20.discount / 100, cost20 = list20 - save20;
   const rev20 = 20 * R[9] * P * U, lift = 20 * R[9] * P * 0.10;
+  const pct = Math.round(U * 100);
   return [
-    { label: 'One 9-Yard Box: Payback Math', text: `A 9-yard box lists at ${usd(p9)}. At a rental rate of ${usd(R[9])} per 4 weeks and ${Math.round(U * 100)}% time utilization, it brings in about ${usd(R[9] * U)} per 4-week period, or roughly ${usd(rev9)} a year. That pays back the purchase price in about ${months9.toFixed(0)} months, and every rental after that is margin for the life of the box.` },
-    { label: '10-Box Mixed Bundle: Stocking a Branch', text: `Five 7-yard and five 9-yard boxes list at ${usd(list10)}. The ${b10.boxes}-box bundle takes ${b10.discount}% off, saving ${usd(save10)} up front for a total of ${usd(cost10)}. At ${usd(R[7])} and ${usd(R[9])} per 4 weeks and ${Math.round(U * 100)}% utilization, the ten boxes can generate about ${usd(rev10)} a year, paying back in roughly ${months10.toFixed(0)} months.` },
-    { label: '20 Boxes Across Branches: Why Durability Pays', text: `Twenty 9-yard boxes list at ${usd(list20)}; the ${b20.boxes}-box bundle saves ${b20.discount}% (${usd(save20)}), for ${usd(cost20)}. At ${Math.round(U * 100)}% utilization they can earn about ${usd(rev20)} a year. Every 10 points of utilization you add, by keeping boxes out of the repair bay and back on rent, is worth about ${usd(lift)} more per year across the fleet. That is why thicker steel, reinforced corners and welded skid plates matter.`, highlight: true },
+    { label: 'One 9-Yard Box', stat: `~${months9.toFixed(0)} months`, statLabel: 'to pay back the box',
+      lines: [['Box price', usd(p9)], ['Rental rate', `${usd(R[9])} / 4 weeks`], [`Revenue at ${pct}% utilization`, `${usd(rev9)} / year`]],
+      text: 'After payback, every rental is margin for the life of the box.' },
+    { label: '10-Box Mixed Bundle', stat: `~${months10.toFixed(0)} months`, statLabel: 'to pay back the bundle',
+      lines: [['Five 7 yd + five 9 yd', usd(list10)], [`${b10.discount}% bundle savings`, `−${usd(save10)}`], ['Your cost', usd(cost10)], [`Revenue at ${pct}% utilization`, `${usd(rev10)} / year`]],
+      text: 'Stock a new branch with a mix of sizes and save up front.' },
+    { label: '20 Boxes Across Branches', stat: `+${usd(lift)}`, statLabel: 'per year for every 10 points of utilization', highlight: true,
+      lines: [['Twenty 9 yd boxes', usd(list20)], [`${b20.discount}% bundle savings`, `−${usd(save20)}`], ['Your cost', usd(cost20)], [`Revenue at ${pct}% utilization`, `${usd(rev20)} / year`]],
+      text: 'Boxes that stay out of the repair bay stay on rent. That is why thicker steel, reinforced corners and welded skid plates pay.' },
   ];
 }
 export const RENTAL_NOTE = 'Illustrative examples, not customer results. Based on Bedding Boxes Direct list prices and bundle discounts, a published regional rental rate sheet (about $900 per 4 weeks for 7–7.5 yd and $1,200 per 4 weeks for 9 yd rock boxes), 13 four-week periods per year and 65% time utilization (a common rental-industry target is 65–75%). Freight, taxes, maintenance and your local rates are not included and will change the results.';
