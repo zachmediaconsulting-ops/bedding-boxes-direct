@@ -74,6 +74,24 @@ ${indexable.map(({ page }) => `  <url><loc>${SITE.url}${page.path}</loc></url>`)
 </urlset>
 `);
 writeFileSync(join(dist, 'robots.txt'), `User-agent: *\nDisallow: /api/\nDisallow: /thank-you/\nAllow: /\n\nSitemap: ${SITE.url}/sitemap.xml\n`);
+// llms.txt: a plain-text guide for AI assistants and crawlers (https://llmstxt.org), built from the same page data.
+{
+  const a = SITE.address;
+  const line = ({ page }) => `- [${page.title}](${SITE.url}${page.path})${page.description ? `: ${page.description}` : ''}`;
+  const order = ({ page }) => page.productSize || 0;
+  const group = (test) => indexable.filter(test).sort((x, y) => order(x) - order(y) || x.page.path.localeCompare(y.page.path)).map(line);
+  const isSize = ({ page }) => page.path.startsWith('/product/');
+  writeFileSync(join(dist, 'llms.txt'), [
+    `# ${SITE.name}`, '',
+    `> ${SITE.tagline}. ${SITE.summary} ${SITE.shipsTo}`, '',
+    `- Phone: ${SITE.phones.map((p) => `${p.number} (${p.hours})`).join('; ')}`,
+    `- Email: ${SITE.email}`,
+    `- Address: ${a.street}, ${a.city}, ${a.region} ${a.postal}`,
+    `- Prices and specifications are on each size page. Freight is quoted separately.`, '',
+    '## Bedding box sizes', '', ...group(isSize), '',
+    '## All other pages', '', ...group((r) => !isSize(r)), '',
+  ].join('\n'));
+}
 const imgRedirects = imageRedirects();
 writeFileSync(join(dist, '_redirects'), [
   '# Old WordPress pages -> new pages (301). Source: src/redirects.mjs',
