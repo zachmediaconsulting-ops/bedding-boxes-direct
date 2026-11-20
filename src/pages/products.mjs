@@ -47,7 +47,7 @@ function sizePage(p) {
             <div><dt>Overall L × W × H</dt><dd>${s.A}″ × ${s.G}″ × ${s.D}″</dd></div>
             <div><dt>Suggested machine*</dt><dd>${esc(s.machine)} · ${esc(s.hp)}</dd></div>
           </dl>
-          <div class="btn-row btn-row--left" style="margin-top:12px">${button({ text: 'Request a Quote', href: `#quote` })}${callButton('mountain', { text: 'Call for Pricing', style: 'dark' })}</div>
+          <div class="btn-row btn-row--left" style="margin-top:12px">${button({ text: 'Request a Quote', href: `#quote` })}${callButton('sales', { text: 'Call for Pricing', style: 'dark' })}</div>
           <p class="small" style="margin-top:14px">${icon('truck')} ${esc(SITE.shipsTo)} Buying 10+ boxes? <a href="/fleet-bedding-box-bundles/" data-track="bundle_inquiry">Ask about volume discounts</a>.</p>
         </div>
       </div></section>`,
@@ -100,7 +100,7 @@ export const catalog = {
   render: (c) => join([
     pageTitle({ h1: 'All Bedding Boxes For Sale', crumbs: c.crumbs, text: 'Seven standard sizes from 3 to 18 cubic yards. American made with American steel and shipped nationwide. Request a quote or call to order.' }),
     `<section class="section" id="sizes"><div class="box">${productGrid(PRODUCTS)}
-      <div class="btn-row">${callButton('mountain', { text: 'Call to Order' })}${button({ text: 'Request a Quote', href: '/request-a-quote/', style: 'outline' })}</div></div></section>`,
+      <div class="btn-row">${callButton('sales', { text: 'Call to Order' })}${button({ text: 'Request a Quote', href: '/request-a-quote/', style: 'outline' })}</div></div></section>`,
     `<section class="section section--gray" id="compare"><div class="box">
       ${sectionHead({ kicker: 'Verified specifications', title: 'Compare [Bedding Box Sizes]', text: 'Every configuration we build, including 2.25 yd and the 7 yd and 12 yd wide boxes. Scroll the table sideways on a phone.' })}
       ${specTable()}
@@ -188,7 +188,7 @@ export const ar500 = {
       <aside class="card"><h2 style="font-size:28px">Current AR500 Upgrade Prices</h2>
         <div class="table-wrap"><table class="spec-table" style="min-width:0"><thead><tr><th>Box</th><th>AR500 Price</th></tr></thead><tbody>${AR500_PRICES.map(([k, v]) => `<tr><td>${esc(k)}</td><td>$${v.toLocaleString('en-US', { minimumFractionDigits: 2 })}</td></tr>`).join('')}</tbody></table></div>
         <p class="small" style="margin-top:8px">Prices as published. Freight quoted separately. Call to confirm current pricing and lead time.</p>
-        <div class="btn-row">${button({ text: 'Custom Order AR500', href: '/request-a-quote/?size=AR500' })}${callButton('mountain', { text: 'Call to Order', style: 'dark' })}</div>
+        <div class="btn-row">${button({ text: 'Custom Order AR500', href: '/request-a-quote/?size=AR500' })}${callButton('sales', { text: 'Call to Order', style: 'dark' })}</div>
       </aside>
     </div></section>`,
     quoteSection({ title: 'Custom Order [AR500]', form: { id: 'quote-form', sizes: ['AR500'], inquiry: 'ar500' } }),
@@ -231,7 +231,7 @@ export const bundles = {
     ...BUNDLES.map((b, i) => `<section class="section${i % 2 ? '' : ' section--gray'}" id="${b.anchor}"><div class="box grid-2 grid-2--top">
       <div><p class="kicker">Rental fleet &amp; contractor bundle</p><h2>${esc(b.name)}</h2><p class="bundle__off">${b.discount}% OFF</p>
         <div class="prose">${(i === 0 ? bunO.bundle10 : bunO.bundle20).replace(/<h2>(.*?)<\/h2>/, '<h3>$1</h3>')}</div>
-        <div class="btn-row btn-row--left">${button({ text: `Request ${b.short} Pricing`, href: `#bundle-form`, track: 'bundle_inquiry' })}${callButton('mountain', { text: 'Call to Order', style: 'dark' })}</div></div>
+        <div class="btn-row btn-row--left">${button({ text: `Request ${b.short} Pricing`, href: `#bundle-form`, track: 'bundle_inquiry' })}${callButton('sales', { text: 'Call to Order', style: 'dark' })}</div></div>
       <div class="card card--white"><h3>How the ${b.boxes}-box bundle works</h3><ol><li>Choose any mix of sizes (3, 5, 7, 9, 12, 14 and 18 yard).</li><li>Tell us where they ship: one yard or several job sites/branches.</li><li>We quote the bundle with ${b.discount}% off the total order plus freight.</li><li>Custom paint colors available upon request.</li></ol></div>
     </div></section>`),
     `<section class="section section--red" id="${LARGE_ORDER.anchor}"><div class="box center box--narrow">

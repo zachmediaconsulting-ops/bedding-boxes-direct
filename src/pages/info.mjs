@@ -57,7 +57,7 @@ export const contact = {
     `<section class="section"><div class="box grid-2 grid-2--top">
       <div>
         <ul class="contact-list" style="font-size:18px">
-          ${SITE.phones.map((p) => `<li>${icon('phone')}<span><b>Phone · ${esc(p.label)}</b><a href="${p.href}" data-track="phone_click">+${esc(p.display)}</a><br><span class="small">${esc(p.hours)}</span></span></li>`).join('')}
+          ${SITE.phones.map((p) => `<li>${icon('phone')}<span><b>Phone Number</b><a href="${p.href}" data-track="phone_click">+${esc(p.display)}</a><br><span class="small">${esc(p.hours)}</span></span></li>`).join('')}
           <li>${icon('envelope')}<span><b>Email Address</b><a href="mailto:${SITE.email}">${SITE.email}</a></span></li>
           <li>${icon('pin')}<span><b>Our Location</b>${esc(addressLine)}</span></li>
         </ul>
@@ -148,7 +148,7 @@ export const whatSize = {
         <div style="margin-top:20px">${infoLinks(c, '/what-size-bedding-box-do-i-need/')}</div>
       </aside>
     </div></section>`,
-    `<section class="section section--gray"><div class="box">${sectionHead({ kicker: 'Still deciding?', title: 'Talk Through Your [Machine and Job]', text: 'Tell us your excavator weight and the work you do. We will recommend a size and quote it.' })}<div class="btn-row">${button({ text: 'Request a Quote', href: '/request-a-quote/' })}${callButton('mountain', { text: 'Call Us', style: 'dark' })}</div></div></section>`,
+    `<section class="section section--gray"><div class="box">${sectionHead({ kicker: 'Still deciding?', title: 'Talk Through Your [Machine and Job]', text: 'Tell us your excavator weight and the work you do. We will recommend a size and quote it.' })}<div class="btn-row">${button({ text: 'Request a Quote', href: '/request-a-quote/' })}${callButton('sales', { text: 'Call Us', style: 'dark' })}</div></div></section>`,
     ...infoTail(),
   ]),
 };

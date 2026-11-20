@@ -91,13 +91,13 @@ export const page = {
       <div class="rounded" style="max-width:var(--box);margin:0 auto">${img('ar500-boxes-for-sale-meteor', 'AR500 bedding box with a meteor impact in the background', { sizes: '(max-width: 1140px) 100vw, 1100px' })}</div>
       <div class="card--red center" style="border-radius:0 0 16px 16px;padding:22px"><h2 style="margin:0;color:#fff">Custom AR500 Boxes Available</h2>${o.ar500Note.replace('<p>', '<p class="disclaimer" style="color:#fff;margin:8px 0 0">')}</div>
       <div class="card card--white center" style="max-width:820px;margin:28px auto 0">${o.ar500.replace(/<h2>.*?<\/h2>/, '')}
-        <div class="btn-row">${button({ text: 'AR500 Boxes Here', href: '/ar500-bedding-boxes-for-sale/' })}${callButton('mountain', { text: 'Call to Order', style: 'dark' })}</div></div>
+        <div class="btn-row">${button({ text: 'AR500 Boxes Here', href: '/ar500-bedding-boxes-for-sale/' })}${callButton('sales', { text: 'Call to Order', style: 'dark' })}</div></div>
     </div></section>`,
 
     `<section class="section" id="use-cases"><div class="box">
       ${sectionHead({ kicker: 'Use cases', title: 'From Bedding Box [Customers]' })}
       <div class="card">${cases(HOME_CASES)}</div>
-      <div class="btn-row">${callButton('mountain', { text: 'Call to Order' })}</div>
+      <div class="btn-row">${callButton('sales', { text: 'Call to Order' })}</div>
     </div></section>`,
 
     quoteSection({ title: 'Get Pricing on [One Box or a Fleet]', form: { id: 'home-quote', inquiry: 'homepage' } }),

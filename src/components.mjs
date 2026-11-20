@@ -23,7 +23,7 @@ export const quoteButton = (text = 'Request a Quote', style = '', href = '/reque
 
 // Both sales lines, labelled by time zone.
 // Each phone button shows only the number; the time zone and hours sit in text underneath.
-export const phonePair = (style = '') => `<div class="phone-pair">${SITE.phones.map((p) => `<div class="phone-pair__item"><a class="btn ${style}" href="${p.href}" data-track="phone_click">${icon('phone')}${esc(p.number)}</a><p class="phone-pair__note">${esc(p.label)} · ${esc(p.hours)}</p></div>`).join('')}</div>`;
+export const phonePair = (style = '') => `<div class="phone-pair">${SITE.phones.map((p) => `<div class="phone-pair__item"><a class="btn ${style}" href="${p.href}" data-track="phone_click">${icon('phone')}${esc(p.number)}</a><p class="phone-pair__note">${esc(p.hours)}</p></div>`).join('')}</div>`;
 
 // ---------- headings ----------
 // "Heavy Duty [Bedding Boxes] For Sale": text in [brackets] is shown in red, as on the original site.
@@ -88,7 +88,7 @@ export const productGrid = (list = PRODUCTS, opts) => `<div class="products">${l
 
 export const productSection = ({ kicker = 'Sizes available for delivery (3yd to 18yd)', title = 'Heavy Duty [Bedding Boxes] For Sale', text, list, id = 'sizes', gray = false } = {}) => `<section class="section${gray ? ' section--gray' : ''}" id="${id}">
   <div class="box">${sectionHead({ kicker, title, text })}${productGrid(list)}
-  <div class="btn-row">${button({ text: 'View All Sizes', href: '/all-bedding-boxes-for-sale/', style: 'outline' })}${callButton('mountain', { text: 'Call to Order' })}</div></div>
+  <div class="btn-row">${button({ text: 'View All Sizes', href: '/all-bedding-boxes-for-sale/', style: 'outline' })}${callButton('sales', { text: 'Call to Order' })}</div></div>
 </section>`;
 
 export const featureList = (items = FEATURES) => `<ul class="features">${items.map(([h, p]) => `<li><strong>${esc(h)}</strong> – ${esc(p)}</li>`).join('')}</ul>`;
@@ -171,7 +171,7 @@ export const quoteSection = ({ id = 'quote', title = 'Get a Quote From Our Team'
       <h2>${accent(title)}</h2>
       ${[].concat(text || ['Tell us what sizes and how many boxes you need, and where they are going. We will confirm pricing, availability, freight and lead time.', `${SITE.responseTime}`]).map((t) => `<p>${t}</p>`).join('')}
       <ul class="contact-list">
-        ${SITE.phones.map((p) => `<li>${icon('phone')}<span><b>${esc(p.label)}</b><a href="${p.href}" data-track="phone_click">${esc(p.number)}</a> · ${esc(p.hours)}</span></li>`).join('')}
+        ${SITE.phones.map((p) => `<li>${icon('phone')}<span><b>Phone</b><a href="${p.href}" data-track="phone_click">${esc(p.number)}</a> · ${esc(p.hours)}</span></li>`).join('')}
         <li>${icon('envelope')}<span><b>Email</b><a href="mailto:${SITE.email}">${SITE.email}</a></span></li>
       </ul>
     </div>

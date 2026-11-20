@@ -30,7 +30,7 @@ function statePage(s) {
     summary: `Shipping to ${list(p.metros.slice(0, 3))} and all of ${s.name}.`, image: sizes[1].image, ogImage: sizes[1].image,
     phoneKey: line.key, state: s,
     render: (c) => join([
-      pageTitle({ h1: `Bedding Boxes for Sale in ${s.name}`, crumbs: c.crumbs, text: `Heavy-duty, American-made bedding boxes shipped to job sites across ${s.name}. Talk directly with our ${esc(line.label)} sales line: <a href="${line.href}" data-track="phone_click">${esc(line.number)}</a>.` }),
+      pageTitle({ h1: `Bedding Boxes for Sale in ${s.name}`, crumbs: c.crumbs, text: `Heavy-duty, American-made bedding boxes shipped to job sites across ${s.name}. Talk directly with our sales team: <a href="${line.href}" data-track="phone_click">${esc(line.number)}</a>.` }),
       `<section class="section"><div class="box grid-2 grid-2--top">
         <div class="prose">
           <h2>Bedding Boxes for ${esc(s.name)} Contractors</h2>
@@ -48,7 +48,7 @@ function statePage(s) {
             <li>${icon('check')}${BUNDLES.map((b) => `${b.boxes}-box bundles save ${b.discount}%`).join(' · ')}</li>
             <li>${icon('check')}Split shipments to multiple ${esc(s.abbr)} job sites</li>
           </ul>
-          <p style="margin-bottom:6px"><strong>${esc(s.name)} is in the ${esc(s.tz)} time zone.</strong> Call our ${esc(line.label)} line:</p>
+          <p style="margin-bottom:6px"><strong>Call our sales team directly:</strong></p>
           <div class="btn-row btn-row--left" style="margin-top:6px">${callButton(line.key)}${button({ text: 'Request a Quote', href: '#quote', style: 'outline' })}</div>
           <p class="small" style="margin-top:12px">${esc(line.hours)}. ${esc(SITE.responseTime)}</p>
         </aside>
@@ -87,7 +87,7 @@ export const stateHub = {
       pageTitle({ h1: 'Bedding Boxes Shipped to All 48 Continental States', crumbs: c.crumbs, text: `${esc(SITE.shipsTo)} Pick your state for local conditions, recommended sizes and the sales line for your time zone.` }),
       `<section class="section"><div class="box"><div class="grid-4">${regions.map((r) => `<div><h2 style="font-size:20px">${esc(r)}</h2><ul class="state-list" style="columns:1">${US_STATES.filter((s) => s.region === r).map((s) => `<li><a href="${statePath(s)}">${esc(s.name)}</a></li>`).join('')}</ul></div>`).join('')}</div></div></section>`,
       `<section class="section section--gray"><div class="box grid-2">
-        ${SITE.phones.map((p) => `<div class="card card--white"><h2 style="font-size:24px">${esc(p.label)} Sales Line</h2><p><a class="btn" href="${p.href}" data-track="phone_click">${icon('phone')}${esc(p.number)}</a></p><p>${esc(p.hours)}</p></div>`).join('')}
+        ${SITE.phones.map((p) => `<div class="card card--white"><h2 style="font-size:24px">Call Our Sales Team</h2><p><a class="btn" href="${p.href}" data-track="phone_click">${icon('phone')}${esc(p.number)}</a></p><p>${esc(p.hours)}</p></div>`).join('')}
       </div></section>`,
       bundleTeaser(BUNDLES),
     ]);

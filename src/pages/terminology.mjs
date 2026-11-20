@@ -29,7 +29,7 @@ function termPage(d) {
           <p class="pill">${esc(d.pill)}</p>
           <h1 class="hero__headline" style="font-size:clamp(36px,5.4vw,64px)">${accent(d.heroTitle)}</h1>
           <p class="lead">${d.lead}</p>
-          <div class="btn-row btn-row--left">${button({ text: 'Request a Quote', href: '#quote' })}${callButton('mountain', { text: 'Call for Pricing', style: 'dark' })}</div>
+          <div class="btn-row btn-row--left">${button({ text: 'Request a Quote', href: '#quote' })}${callButton('sales', { text: 'Call for Pricing', style: 'dark' })}</div>
           ${d.note ? `<p class="hero__note">${esc(d.note)}</p>` : ''}
         </div>
         <div class="hero__media hero__media--photo">${img(d.image, d.imageAlt || d.label, { eager: true, sizes: '(max-width: 899px) 100vw, 40vw' })}</div>

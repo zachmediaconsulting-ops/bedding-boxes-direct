@@ -10,11 +10,10 @@ export const SITE = {
   owner: 'Stacy Swingley',
   address: { street: '1399 S Fork Rd', city: 'Cody', region: 'WY', postal: '82414', country: 'US' },
 
-  // Two sales lines. The Mountain line is the Cody, Wyoming office. Each state page shows the line for
-  // its time zone (see TIMEZONE_LINE below); everywhere else shows both, main line first.
+  // One sales line (owner decision 2026-11-20: the (406) number was removed). It answers both time zones,
+  // so the hours show Mountain and Eastern times together under every phone button.
   phones: [
-    { key: 'mountain', label: 'Mountain Time', display: '1 (307) 263-5020', number: '(307) 263-5020', href: 'tel:+13072635020', e164: '+1-307-263-5020', hours: 'Mon–Fri 5AM to 5PM (MST)' },
-    { key: 'eastern', label: 'Eastern Time', display: '1 (406) 544-9053', number: '(406) 544-9053', href: 'tel:+14065449053', e164: '+1-406-544-9053', hours: 'Mon–Fri 7AM to 7PM (EST)' },
+    { key: 'sales', label: 'Sales', display: '1 (307) 263-5020', number: '(307) 263-5020', href: 'tel:+13072635020', e164: '+1-307-263-5020', hours: 'Mon–Fri 5AM to 5PM (MST) · Mon–Fri 7AM to 7PM (EST)' },
   ],
   officeHours: 'Mon–Fri 5AM to 5PM (MST) · Mon–Fri 7AM to 7PM (EST)',
   responseTime: 'Monday through Friday we will respond within 24hrs.',
@@ -25,10 +24,9 @@ export const SITE = {
   shipsTo: 'Nationwide shipping to the continental United States (excluding Alaska & Hawaii).',
 };
 
-// Which sales line each US time zone sees on state pages. Central states use the Eastern line
-// (closer clock to the Eastern team). Change here if the owner assigns Central differently.
-export const TIMEZONE_LINE = { Eastern: 'eastern', Central: 'eastern', Mountain: 'mountain', Pacific: 'mountain' };
+// Every state uses the one sales line.
+export const TIMEZONE_LINE = { Eastern: 'sales', Central: 'sales', Mountain: 'sales', Pacific: 'sales' };
 
-export const phone = (key = 'mountain') => SITE.phones.find((p) => p.key === key) || SITE.phones[0];
+export const phone = (key = 'sales') => SITE.phones.find((p) => p.key === key) || SITE.phones[0];
 export const mainPhone = SITE.phones[0];
 export const addressLine = `${SITE.address.street}, ${SITE.address.city}, ${SITE.address.region} ${SITE.address.postal}`;

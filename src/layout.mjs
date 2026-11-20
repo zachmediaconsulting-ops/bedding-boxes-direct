@@ -75,13 +75,13 @@ function footer(path) {
       <a class="footer__logo" href="/">${img('bedding-boxes-direct-logo-2424px-blue', SITE.name, { sizes: '190px' })}</a>
       <p>${esc(SITE.summary)}</p>
       <ul class="footer__phones">
-        ${SITE.phones.map((p) => `<li>${esc(p.label)}: <a href="${p.href}" data-track="phone_click">${esc(p.number)}</a></li>`).join('')}
+        ${SITE.phones.map((p) => `<li>Phone: <a href="${p.href}" data-track="phone_click">${esc(p.number)}</a></li>`).join('')}
         <li><a href="mailto:${SITE.email}">${SITE.email}</a></li>
       </ul>
       <div class="footer__social"><a href="${SITE.sameAs[0]}" aria-label="Bedding Boxes Direct on Facebook" rel="noopener" target="_blank">${icon('facebook')}</a><a href="mailto:${SITE.email}" aria-label="Email us">${icon('envelope')}</a></div>
     </div>
     ${FOOTER.map((c) => `<nav aria-label="${esc(c.title)}"><h2>${esc(c.title)}</h2><ul>${c.links.map(([l, h]) => `<li><a href="${h}"${cur(h, path)}>${esc(l)}</a></li>`).join('')}</ul></nav>`).join('')}
-    <div><h2>Office Hours</h2><p>${esc(SITE.phones[0].hours)}<br>${esc(SITE.phones[1].hours)}</p><p>${esc(SITE.address.city)}, ${esc(SITE.address.region)}<br>Nationwide shipping (continental US)</p></div>
+    <div><h2>Office Hours</h2><p>Mon–Fri 5AM to 5PM (MST)<br>Mon–Fri 7AM to 7PM (EST)</p><p>${esc(SITE.address.city)}, ${esc(SITE.address.region)}<br>Nationwide shipping (continental US)</p></div>
   </div>
 </footer>
 <section class="sitemap-band" aria-label="Sitemap">
@@ -98,7 +98,7 @@ export function layout({ page, body, assets, jsonLd = [] }) {
   const canonical = page.canonical === false ? '' : (page.canonical || SITE.url + page.path);
   const robots = page.noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
   const ogImage = `${SITE.url}${imageUrl(page.ogImage || 'bedding-boxes-direct-featured-image')}`;
-  const p = phoneFor(page.phoneKey || 'mountain');
+  const p = phoneFor(page.phoneKey || 'sales');
   const t = TRACKING;
   const minimal = page.minimal;
   return `<!doctype html>
@@ -172,7 +172,7 @@ export function organizationLd() {
     email: SITE.email,
     description: SITE.summary,
     address: { '@type': 'PostalAddress', streetAddress: SITE.address.street, addressLocality: SITE.address.city, addressRegion: SITE.address.region, postalCode: SITE.address.postal, addressCountry: SITE.address.country },
-    contactPoint: SITE.phones.map((p) => ({ '@type': 'ContactPoint', telephone: p.e164, contactType: 'sales', areaServed: 'US', availableLanguage: 'English', description: `${p.label} sales line, ${p.hours}` })),
+    contactPoint: SITE.phones.map((p) => ({ '@type': 'ContactPoint', telephone: p.e164, contactType: 'sales', areaServed: 'US', availableLanguage: 'English', description: `Sales line, ${p.hours}` })),
     sameAs: SITE.sameAs,
   };
 }
