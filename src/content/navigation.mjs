@@ -7,7 +7,7 @@ export const NAV = [
   { label: 'Home', href: '/' },
   {
     label: 'Bedding Boxes', href: '/all-bedding-boxes-for-sale/',
-    mega: { type: 'image', layout: 'third', image: '12-yard-bedding-box-for-sale-7', alt: 'Blue Bedding Boxes Direct bedding boxes on the manufacturing lot', title: 'Shop All Bedding Boxes' },
+    mega: { type: 'image', layout: 'custom', image: '12-yard-bedding-box-for-sale-7', alt: 'Blue Bedding Boxes Direct bedding boxes on the manufacturing lot', title: 'Shop All Bedding Boxes' },
     items: [
       { label: 'All Sizes', href: '/all-bedding-boxes-for-sale/' },
       ...PRODUCTS.map((p) => ({ label: `${p.size} Yard Bedding Box`, href: p.path })),

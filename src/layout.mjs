@@ -13,6 +13,14 @@ const cur = (href, path) => (href === path ? ' aria-current="page"' : '');
 function megaPanel(g, path) {
   const m = g.mega;
   const links = (cls = 'mega__links') => `<ul class="${cls}">${g.items.map((x) => `<li${/^All /.test(x.label) ? ' class="mega__all"' : ''}><a href="${x.href}"${cur(x.href, path)}>${esc(x.label)}</a></li>`).join('')}</ul>`;
+  if (m.type === 'image' && m.layout === 'custom') {
+    // 4 columns: custom-box callout | links in two columns | photo to the right edge
+    return `<div class="mega__grid mega__grid--custom">
+      <div class="mega__intro"><p class="kicker">Custom bedding boxes</p><h2>Need a <span class="accent">Custom Box?</span></h2><p>Custom fabrication from 2.25 to 18+ cubic yards. Competitively priced, fast lead times, made here in America with American steel.</p><a class="btn btn--sm" href="/bedding-box-fabrication-company/">Build a Custom Box</a></div>
+      <div class="mega__body mega__body--plain"><a class="mega__title" href="${g.href}">${esc(m.title)} <span aria-hidden="true">›</span></a>${links('mega__links mega__links--2col')}</div>
+      <div class="mega__media">${img(m.image, m.alt, { sizes: '25vw' })}</div>
+    </div>`;
+  }
   if (m.type === 'image') {
     return `<div class="mega__grid mega__grid--image${m.layout === 'third' ? ' mega__grid--third' : ''}">
       <div class="mega__media">${img(m.image, m.alt, { sizes: '66vw' })}</div>
