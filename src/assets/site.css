@@ -590,3 +590,26 @@ ul, ol { padding-left: 1.3em; }
   .mega__media img { transition: none; }
   .mega__grid--custom { grid-template-columns: 1fr 2fr; gap: 56px; padding-right: max(20px, calc((100vw - var(--box)) / 2 + 20px)); }
 }
+
+/* ---------- mega menu v4: stationary frame under the header; contents slide down inside it ---------- */
+@media (min-width: 1100px) {
+  .mega {
+    z-index: 1; background: transparent; box-shadow: none; overflow: hidden;
+    transform: none !important; clip-path: none !important; opacity: 1;
+    visibility: hidden; transition: visibility 0s linear .45s;
+  }
+  .menu > li.has-mega:hover > .mega, .menu > li.has-mega:focus-within > .mega, .mega.is-open {
+    transform: none !important; visibility: visible; transition: visibility 0s;
+  }
+  .mega__grid {
+    background: #f8f8f8; box-shadow: inset 0 -1px 0 var(--gray-2);
+    transform: translateY(-100%); opacity: 1;
+    transition: transform .45s cubic-bezier(.22,.61,.36,1);
+  }
+  .mega__grid > * { opacity: 0; transition: opacity .35s ease .12s; }
+  .menu > li.has-mega:hover > .mega .mega__grid, .menu > li.has-mega:focus-within > .mega .mega__grid, .mega.is-open .mega__grid { transform: translateY(0); }
+  .menu > li.has-mega:hover > .mega .mega__grid > *, .menu > li.has-mega:focus-within > .mega .mega__grid > *, .mega.is-open .mega__grid > * { opacity: 1; }
+  .mega__grid > .mega__media { opacity: 1; }
+  /* boxed grids keep the full-width background */
+  .mega__grid.box { max-width: none; padding-left: max(20px, calc((100vw - var(--box)) / 2 + 20px)); padding-right: max(20px, calc((100vw - var(--box)) / 2 + 20px)); }
+}
