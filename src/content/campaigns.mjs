@@ -33,7 +33,7 @@ export const CAMPAIGNS = [
     lead: 'Boxes that keep earning on rent: thicker American steel, welded skid plates and a rotating handle that stands up to every kind of operator.',
     bullets: ['Built for high-utilization rental', 'Custom paint colors available', 'Mix any sizes in a bundle', 'Ship to one yard or every branch'],
     stats: [['10 boxes', 'save 5%'], ['20 boxes', 'save 7%'], ['20+', 'fleet pricing'], ['USA', 'made with American steel']],
-    benefitsTitle: 'Built to Stay on Rent',
+    benefitsTitle: 'Built to Stay Rented',
     benefits: [['Less time in the repair bay', 'Reinforced corners and thicker sidewalls reduce wear and extend lifespan.'], ['Easy for every renter', 'Grab/push bars and skid plates make placement simple.'], ['Your brand on the job site', 'Custom paint colors available upon request.']],
     caseLabel: 'Contractor Bills for Use', formTitle: 'Get Fleet Pricing', quantity: '10–19 boxes (10-box bundle)',
   },
