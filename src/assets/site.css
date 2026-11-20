@@ -561,3 +561,8 @@ ul, ol { padding-left: 1.3em; }
   .mega__grid--third .mega__body { padding: 24px 64px; }
   .mega__grid--third .mega__links--2col { column-gap: 48px; }
 }
+/* Text-only link cards (no repeated photos) */
+.link-card { border-top: 4px solid var(--red); }
+.link-card__body { padding: 24px 24px 26px; display: flex; flex-direction: column; height: 100%; }
+.link-card__body br { display: none; }
+.link-card__more { margin-top: auto; padding-top: 12px; }

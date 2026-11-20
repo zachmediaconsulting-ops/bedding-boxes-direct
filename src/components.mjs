@@ -128,7 +128,7 @@ ${note ? '<p class="disclaimer" style="margin-top:16px">Customer use cases as re
 export function linkCards({ pages, heading, kicker, text, gray = true, id }) {
   return `<section class="section${gray ? ' section--gray' : ''}"${id ? ` id="${id}"` : ''}><div class="box">
   ${heading ? sectionHead({ kicker, title: heading, text }) : ''}
-  <div class="link-cards">${pages.map((p) => `<a class="link-card" href="${p.href}">${p.image ? img(p.image, '', { sizes: '(max-width: 767px) 100vw, 360px' }) : ''}<span class="link-card__body"><span class="link-card__title">${esc(p.label)}</span>${p.summary ? `<span>${esc(p.summary)}</span>` : ''}<br><span class="link-card__more">Learn more ›</span></span></a>`).join('')}</div>
+  <div class="link-cards">${pages.map((p) => `<a class="link-card" href="${p.href}"><span class="link-card__body"><span class="link-card__title">${esc(p.label)}</span>${p.summary ? `<span>${esc(p.summary)}</span>` : ''}<br><span class="link-card__more">Learn more ›</span></span></a>`).join('')}</div>
 </div></section>`;
 }
 
