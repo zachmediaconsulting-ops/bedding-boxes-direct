@@ -42,9 +42,7 @@ export const page = {
       </div>
       <div class="hero__media">
         <video src="${SITE.heroVideo}" poster="/images/bedding-boxes-direct-vertical-poster.webp" muted loop playsinline preload="none" data-autoplay aria-label="Bedding boxes ready to ship"></video>
-        <p class="hero__media-text" aria-hidden="true">Ready when<br>you are.</p>
         <button class="sound-toggle" type="button" data-sound aria-label="Turn on sound">Turn on<br>sound 🔊</button>
-        <a class="hero__call" href="${SITE.phones[0].href}" data-track="phone_click">${img('stacy-swingley-bedding-boxes-direct', '', { sizes: '64px' })}<span class="btn">${icon('phone')}Call Now</span></a>
       </div>
     </section>`,
 

@@ -403,3 +403,36 @@ ul, ol { padding-left: 1.3em; }
 }
 /* Grid columns may shrink below their content (lets wide tables scroll inside instead of widening the page). */
 .grid-2 > *, .grid-3 > *, .grid-4 > *, .layout-aside > *, .hero > *, .product-hero > * { min-width: 0; }
+
+/* ---------- top bar: delivery + made-in-USA left, phone right, full width ---------- */
+.topbar { font-size: 16px; }
+.topbar ul { justify-content: flex-start; gap: 36px; padding: 12px 40px; }
+.topbar .topbar__phone { margin-left: auto; }
+.topbar .icon { width: 18px !important; height: 18px !important; }
+@media (max-width: 767px) {
+  .topbar ul { padding: 10px 14px; gap: 14px; justify-content: space-between; }
+  .topbar li { font-size: 13px; }
+  .topbar li:nth-child(3) { display: flex !important; }
+  .topbar li:nth-child(2) { font-size: 13px; }
+}
+@media (max-width: 420px) { .topbar li:nth-child(2) { display: none; } .topbar ul { justify-content: center; } .topbar .topbar__phone { margin-left: 0; font-size: 15px; } }
+
+/* ---------- floating "Call Now" button (stays in place while scrolling, desktop) ---------- */
+.call-float { display: none; }
+@media (min-width: 768px) {
+  .call-float { display: block; position: fixed; right: 20px; bottom: 20px; z-index: 70; width: 280px; filter: drop-shadow(0 6px 16px rgba(0,0,0,.25)); }
+  .call-float:hover { transform: translateY(-2px); }
+}
+
+/* ---------- footer: no divider lines; blue sitemap band with every page ---------- */
+.footer { padding: 80px 0 64px; }
+.footer__bottom, .directory { display: none; }
+.sitemap-band { background: var(--blue); color: #fff; padding: 56px 0 120px; }
+.sitemap-band__title { text-align: center; color: #fff; font-size: 28px; letter-spacing: 1px; margin: 0 0 28px; }
+.sitemap-band__list { list-style: none; margin: 0; padding: 0; columns: 2 150px; column-gap: 28px; font-size: 14px; }
+.sitemap-band__list li { margin: 0 0 8px; break-inside: avoid; }
+.sitemap-band a { color: #fff; text-decoration: none; opacity: .92; }
+.sitemap-band a:hover, .sitemap-band a[aria-current] { opacity: 1; text-decoration: underline; }
+.sitemap-band__bottom { display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: space-between; margin-top: 40px; font-size: 13px; color: rgba(255,255,255,.85); }
+@media (min-width: 768px) { .sitemap-band { padding-bottom: 48px; } .sitemap-band__list { columns: 5 180px; } }
+@media (min-width: 768px) { .sitemap-band__bottom { padding-right: 300px; } }

@@ -147,7 +147,7 @@ for (const { page, html } of report) {
 // Every public page must be linked from the footer site directory (ad pages, thank-you and 404 excepted).
 {
   const home = report.find((r) => r.page.path === '/').html;
-  const foot = home.slice(home.indexOf('<footer'), home.indexOf('</footer>'));
+  const foot = home.slice(home.indexOf('<footer'), home.indexOf('sitemap-band__bottom'));
   for (const { page } of report) {
     if (page.path === '/' || page.campaign || page.file || page.path === '/thank-you/') continue;
     if (!foot.includes(`href="${page.path}"`)) errors.push(`${page.path}: not linked from the footer`);

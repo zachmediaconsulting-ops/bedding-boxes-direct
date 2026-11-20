@@ -34,11 +34,14 @@ function footer(path) {
     ${FOOTER.map((c) => `<nav aria-label="${esc(c.title)}"><h2>${esc(c.title)}</h2><ul>${c.links.map(([l, h]) => `<li><a href="${h}"${cur(h, path)}>${esc(l)}</a></li>`).join('')}</ul></nav>`).join('')}
     <div><h2>Office Hours</h2><p>${esc(SITE.phones[0].hours)}<br>${esc(SITE.phones[1].hours)}</p><p>${esc(SITE.address.city)}, ${esc(SITE.address.region)}<br>Nationwide shipping (continental US)</p></div>
   </div>
-  <nav class="box directory" aria-label="Site directory">
-    ${DIRECTORY.map((g) => `<details${g.states ? ' class="directory__states"' : ''} open><summary>${esc(g.title)}</summary><ul>${g.links.map(([l, h]) => `<li><a href="${h}"${cur(h, path)}>${esc(l)}</a></li>`).join('')}</ul></details>`).join('')}
-  </nav>
-  <div class="box"><div class="footer__bottom"><span>©${new Date().getFullYear()} ${esc(SITE.parentCompany)}</span><span>${LEGAL.map(([l, h]) => `<a href="${h}">${esc(l)}</a>`).join(' · ')}</span></div></div>
-</footer>`;
+</footer>
+<section class="sitemap-band" aria-label="Sitemap">
+  <div class="box">
+    <h2 class="sitemap-band__title">Sitemap</h2>
+    <ul class="sitemap-band__list">${[...new Map(DIRECTORY.flatMap((g) => g.links).map(([l, h]) => [h, l])).entries()].map(([h, l]) => `<li><a href="${h}"${cur(h, path)}>${esc(l)}</a></li>`).join('')}</ul>
+    <div class="sitemap-band__bottom"><span>©${new Date().getFullYear()} ${esc(SITE.parentCompany)}</span><span>${LEGAL.map(([l, h]) => `<a href="${h}">${esc(l)}</a>`).join(' · ')}</span></div>
+  </div>
+</section>`;
 }
 
 // page: { path, title, description, noindex, canonical, ogImage, minimal (ad pages), phoneKey }
@@ -83,7 +86,7 @@ ${t.gtm ? `<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=${
 ${minimal ? '' : `<div class="topbar"><ul>
   <li class="topbar__hide-sm">${icon('truck')}Nationwide Delivery</li>
   <li>${icon('flag')}American Made With American Steel</li>
-  <li>${icon('phone')}<a href="${p.href}" data-track="phone_click">${esc(p.display)}</a></li>
+  <li class="topbar__phone">${icon('phone')}<a href="${p.href}" data-track="phone_click">${esc(p.display)}</a></li>
 </ul></div>`}
 <header class="header${minimal ? ' lp-header' : ''}">
   <div class="header__inner">
@@ -99,6 +102,7 @@ ${minimal ? '' : `<div class="topbar"><ul>
 ${body}
 </main>
 ${minimal ? `<footer class="footer" style="padding:30px 0 110px"><div class="box footer__bottom" style="margin:0;border:0"><span>©${new Date().getFullYear()} ${esc(SITE.name)} · ${esc(SITE.parentCompany)}</span><span><a href="/privacy-policy/">Privacy Policy</a></span></div></footer>` : footer(page.path)}
+<a class="call-float" href="${p.href}" data-track="phone_click" aria-label="Call now: ${esc(p.number)}">${img('call-now-button', 'Call now', { sizes: '300px' })}</a>
 <div class="mobile-cta"><a class="btn btn--dark" href="${p.href}" data-track="phone_click">${icon('phone')}Call</a><a class="btn" href="${page.quoteHref || '/request-a-quote/'}" data-track="quote_request_click">Get a Quote</a></div>
 <script src="${assets.js}" defer></script>
 ${TURNSTILE_SITE_KEY && body.includes('data-lead-form') ? '<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>' : ''}
