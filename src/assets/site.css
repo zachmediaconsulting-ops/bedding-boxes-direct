@@ -515,3 +515,38 @@ ul, ol { padding-left: 1.3em; }
 }
 @media (min-width: 1100px) and (max-width: 1399px) { .menu__item--home { display: none !important; } .mega h2 { font-size: 32px; } .mega__states { columns: 5; } }
 @media (prefers-reduced-motion: reduce) { .mega { transition: none !important; transform: none !important; } }
+
+/* ---------- mega menu reveal: grows downward from the header's bottom edge (never draws over the header) ---------- */
+@media (min-width: 1100px) {
+  .mega { transform: none !important; clip-path: inset(0 0 100% 0); transition: clip-path .32s ease, opacity .32s ease, visibility 0s linear .32s; }
+  .menu > li.has-mega:hover > .mega, .menu > li.has-mega:focus-within > .mega, .mega.is-open { clip-path: inset(0 0 0 0); }
+}
+
+/* ---------- footer: full width, gray sitemap, black centered copyright bar ---------- */
+.footer__wide { padding: 0 20px; }
+@media (min-width: 768px) { .footer__wide { padding: 0 60px; } }
+.footer { padding: 60px 0; }
+.sitemap-band { background: var(--gray); color: var(--text); padding: 60px 0; }
+.sitemap-band__title { color: var(--ink); }
+.sitemap-band__group h3 { color: var(--ink); border-bottom: 0; padding-bottom: 0; }
+.sitemap-band a { color: var(--text); opacity: 1; }
+.sitemap-band a:hover, .sitemap-band a[aria-current] { color: var(--red); text-decoration: none; }
+.copyright-bar { background: var(--black); color: #bbb; text-align: center; padding: 22px 20px 100px; font-size: 14px; display: flex; flex-direction: column; gap: 8px; align-items: center; }
+.copyright-bar a { color: #fff; text-decoration: none; }
+.copyright-bar a:hover { color: var(--red); }
+@media (min-width: 768px) { .copyright-bar { padding-bottom: 22px; } }
+
+/* ---------- center partial rows of cards; single case studies centered ---------- */
+.products, .link-cards { display: flex; flex-wrap: wrap; justify-content: center; }
+.products > * { flex: 0 1 280px; }
+.link-cards > * { flex: 0 1 360px; }
+.cases > :only-child { grid-column: 1 / -1; }
+.cases:has(> :only-child) { max-width: 820px; margin: 0 auto; }
+/* Red callout cards: all text white for contrast */
+.card--red, .card--red * { color: #fff !important; }
+.card--red a { text-decoration: underline; }
+@media (min-width: 1100px) {
+  .mega { opacity: 1; transition: clip-path .3s ease, visibility 0s linear .3s; }
+  .mega__grid { opacity: 0; transition: opacity .25s ease .08s; }
+  .menu > li.has-mega:hover > .mega .mega__grid, .menu > li.has-mega:focus-within > .mega .mega__grid, .mega.is-open .mega__grid { opacity: 1; }
+}

@@ -117,5 +117,5 @@ export const DIRECTORY = [
       ['Shipping Details', '/shipping-details/'], ['Privacy Policy', '/privacy-policy/'], ['Return & Refund Policy', '/return-refund-policy/'],
     ],
   },
-  { title: 'Bedding Boxes for Sale by State', states: true, links: [['All States', '/bedding-boxes-for-sale/'], ...US_STATES.map((s) => [s.name, statePath(s)])] },
+  { title: 'Bedding Box Availability', states: true, links: [['All States', '/bedding-boxes-for-sale/'], ...US_STATES.map((s) => [s.name, statePath(s)])] },
 ];

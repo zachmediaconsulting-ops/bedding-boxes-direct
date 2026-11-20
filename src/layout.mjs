@@ -63,7 +63,7 @@ function menu(path) {
 
 function footer(path) {
   return `<footer class="footer">
-  <div class="box footer__grid">
+  <div class="footer__wide footer__grid">
     <div>
       <a class="footer__logo" href="/">${img('bedding-boxes-direct-logo-2424px-blue', SITE.name, { sizes: '190px' })}</a>
       <p>${esc(SITE.summary)}</p>
@@ -78,12 +78,12 @@ function footer(path) {
   </div>
 </footer>
 <section class="sitemap-band" aria-label="Sitemap">
-  <div class="box">
+  <div class="footer__wide">
     <h2 class="sitemap-band__title">Sitemap</h2>
     <div class="sitemap-band__groups">${DIRECTORY.map((g) => `<nav class="sitemap-band__group${g.states ? ' sitemap-band__group--states' : ''}" aria-label="${esc(g.title)}"><h3>${esc(g.title)}</h3><ul>${g.links.map(([l, h]) => `<li><a href="${h}"${cur(h, path)}>${esc(l)}</a></li>`).join('')}</ul></nav>`).join('')}</div>
-    <div class="sitemap-band__bottom"><span>©${new Date().getFullYear()} ${esc(SITE.parentCompany)}</span><span>${LEGAL.map(([l, h]) => `<a href="${h}">${esc(l)}</a>`).join(' · ')}</span></div>
   </div>
-</section>`;
+</section>
+<div class="copyright-bar"><span>©${new Date().getFullYear()} ${esc(SITE.parentCompany)}</span><span>${LEGAL.map(([l, h]) => `<a href="${h}">${esc(l)}</a>`).join(' · ')}</span></div>`;
 }
 
 // page: { path, title, description, noindex, canonical, ogImage, minimal (ad pages), phoneKey }
