@@ -619,3 +619,5 @@ ul, ol { padding-left: 1.3em; }
 /* Ad pages: header phone button stays on one line on phones */
 .lp-header .header__cta { white-space: nowrap; }
 @media (max-width: 520px) { .lp-header .logo img { width: 140px; } .lp-header .header__cta { font-size: 17px; padding: 10px 16px; min-height: 0; } }
+.product-card--simple .product-card__body { padding-bottom: 20px; }
+.section--gray .product-card--simple { background: #fff; }
