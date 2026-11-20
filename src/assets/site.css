@@ -550,3 +550,9 @@ ul, ol { padding-left: 1.3em; }
   .mega__grid { opacity: 0; transition: opacity .25s ease .08s; }
   .menu > li.has-mega:hover > .mega .mega__grid, .menu > li.has-mega:focus-within > .mega .mega__grid, .mega.is-open .mega__grid { opacity: 1; }
 }
+/* Phone buttons: number only inside the button, time zone + hours as text below */
+.phone-pair { align-items: flex-start; gap: 18px 24px; }
+.phone-pair__item { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.phone-pair .btn { flex-direction: row; gap: .45em; line-height: 1.2; }
+.phone-pair__note { margin: 0; font-size: 14px; color: var(--text); text-align: center; }
+.cta-band--red .phone-pair__note, .section--red .phone-pair__note, .card--red .phone-pair__note { color: #fff; }

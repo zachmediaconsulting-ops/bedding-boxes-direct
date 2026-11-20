@@ -69,10 +69,7 @@ export const page = {
 
     `<section class="section" id="sizes"><div class="box">
       ${sectionHead({ kicker: 'Sizes available for delivery (3yd to 18yd)', title: '[Heavy Duty] Bedding Boxes For Sale' })}
-      <div class="grid-2 grid-2--top" style="margin-bottom:40px">
-        <div class="prose">${o.sizesIntro.replace(/<p class="kicker">.*?<\/p>|<h2>.*?<\/h2>/g, '')}</div>
-        <div class="prose">${o.sizesList.replace('<h3>', '<h3 style="font-size:24px">')}</div>
-      </div>
+      <div class="prose center" style="max-width:860px;margin:0 auto 40px">${o.sizesIntro.replace(/<p class="kicker">.*?<\/p>|<h2>.*?<\/h2>/g, '')}</div>
       ${productGrid(PRODUCTS)}
       <div class="btn-row">${button({ text: 'Compare All Sizes', href: '/all-bedding-boxes-for-sale/', style: 'outline' })}${button({ text: 'What Size Do I Need?', href: '/what-size-bedding-box-do-i-need/', style: 'outline' })}</div>
     </div></section>`,

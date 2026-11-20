@@ -22,7 +22,8 @@ export const callButton = (key, { text, style = '' } = {}) => {
 export const quoteButton = (text = 'Request a Quote', style = '', href = '/request-a-quote/') => button({ text, href, style });
 
 // Both sales lines, labelled by time zone.
-export const phonePair = (style = '') => `<div class="phone-pair">${SITE.phones.map((p) => `<a class="btn ${style}" href="${p.href}" data-track="phone_click">${icon('phone')}<span>${esc(p.number)}<br><small>${esc(p.label)} · ${esc(p.hours)}</small></span></a>`).join('')}</div>`;
+// Each phone button shows only the number; the time zone and hours sit in text underneath.
+export const phonePair = (style = '') => `<div class="phone-pair">${SITE.phones.map((p) => `<div class="phone-pair__item"><a class="btn ${style}" href="${p.href}" data-track="phone_click">${icon('phone')}${esc(p.number)}</a><p class="phone-pair__note">${esc(p.label)} · ${esc(p.hours)}</p></div>`).join('')}</div>`;
 
 // ---------- headings ----------
 // "Heavy Duty [Bedding Boxes] For Sale": text in [brackets] is shown in red, as on the original site.
