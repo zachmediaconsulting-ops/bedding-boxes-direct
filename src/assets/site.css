@@ -647,3 +647,27 @@ ul, ol { padding-left: 1.3em; }
 .deal-math dd { margin: 0; font-weight: 600; color: var(--ink); text-align: right; white-space: nowrap; }
 .deal-math .roi-card__text { margin-top: auto; font-size: 15px; }
 .deal-card .btn { width: 100%; }
+
+/* ---------- form: order type pills, per-size quantities, live summary ---------- */
+.choice-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+.choice-pills label { cursor: pointer; }
+.choice-pills input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.choice-pills span { display: inline-block; padding: 10px 16px; border-radius: 40px; background: var(--gray); border: 2px solid var(--gray); font: 500 15px/1.2 var(--head); text-transform: uppercase; color: var(--ink); }
+.choice-pills input:checked + span { background: var(--red); border-color: var(--red); color: #fff; }
+.choice-pills input:focus-visible + span { outline: 3px solid var(--blue); outline-offset: 2px; }
+.size-checks { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+.size-check { display: flex; align-items: center; gap: 6px; background: var(--gray); border-radius: 10px; padding: 4px 6px 4px 0; min-height: 46px; }
+.size-check label { flex: 1; display: flex; align-items: center; gap: 8px; font: 400 15px/1.2 var(--body); padding: 6px 4px 6px 12px; cursor: pointer; background: none; min-height: 0; }
+.size-check:has(input[type=checkbox]:checked) { background: #fdecee; box-shadow: inset 0 0 0 2px var(--red); }
+.size-check .size-qty { width: 62px; min-height: 36px; padding: 6px 8px; font: 600 15px var(--body); border: 1px solid var(--gray-3); border-radius: 8px; text-align: center; }
+.size-check .size-qty[hidden] { display: none; }
+.field__hint-inline { font-weight: 400; color: var(--text); font-size: 13px; }
+.form-summary { background: #f7f7f7; border-left: 4px solid var(--red); border-radius: 10px; padding: 12px 14px; font-size: 15px; color: var(--ink); }
+.form-summary[hidden] { display: none; }
+.form-summary__title { display: block; font: 500 13px/1.2 var(--head); text-transform: uppercase; color: var(--red); margin-bottom: 4px; }
+.form-summary__hint { display: block; margin-top: 6px; font-size: 13px; color: var(--text); }
+.lp-hero .form .choice-pills span { font-size: 14px; padding: 9px 13px; }
+.form-summary { grid-column: 1 / -1; display: block; line-height: 1.5; }
+.size-checks { grid-template-columns: repeat(auto-fill, minmax(175px, 1fr)); }
+.size-check label { white-space: nowrap; }
+.size-check .size-qty { width: 58px; flex: none; }

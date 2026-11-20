@@ -20,7 +20,7 @@ export const DUPLICATE_WINDOW_MS = 30 * 60 * 1000;
 
 export const FIELDS = {
   full_name: 'Full name', company: 'Company', email: 'Email', phone: 'Phone', state: 'State shipped to', dropoff_address: 'Drop-off address',
-  customer_type: 'Customer type', sizes: 'Interested sizes', quantity: 'Estimated quantity', timeline: 'Timeline', message: 'Message / project details',
+  customer_type: 'Customer type', bundle: 'Order type', sizes: 'Sizes & quantities', quantity: 'Total boxes', timeline: 'Timeline', message: 'Message / project details',
 };
 export const ATTRIBUTION = [
   'platform', 'campaign_audience', 'inquiry_type', 'form_id', 'landing_page_url', 'landing_page_path', 'form_page_url', 'form_page_path', 'referrer',
@@ -96,7 +96,16 @@ export async function onRequestPost({ request, env }) {
 
   // ---- validate ----
   const lead = {};
-  for (const k of Object.keys(FIELDS)) lead[k] = k === 'sizes' ? form.getAll('sizes').map((s) => clean(s, 30)).filter(Boolean).slice(0, 12).join(', ') : clean(form.get(k), k === 'message' ? 4000 : k === 'dropoff_address' ? 300 : 200);
+  for (const k of Object.keys(FIELDS)) lead[k] = clean(form.get(k), k === 'message' ? 4000 : k === 'dropoff_address' ? 300 : 200);
+  // Sizes with per-size quantities, e.g. "4 × 12 yd, 6 × 9 yd". The total follows the per-size numbers when given.
+  let sizeTotal = 0;
+  lead.sizes = form.getAll('sizes').map((s) => clean(s, 30)).filter(Boolean).slice(0, 12).map((s) => {
+    const n = parseInt(clean(form.get(`qty_${s.replace(/[^a-z0-9]/gi, '').toLowerCase()}`), 6), 10);
+    if (n > 0 && n < 1000) { sizeTotal += n; return `${n} × ${s}`; }
+    return s;
+  }).join(', ');
+  if (sizeTotal > 0) lead.quantity = String(sizeTotal);
+  lead.bundle = { 10: '10-box bundle', 20: '20-box bundle', '20+': 'Large fleet (20+ boxes)' }[lead.bundle] || (lead.bundle ? clean(lead.bundle, 20) : 'Individual boxes');
   for (const k of ATTRIBUTION) lead[k] = clean(form.get(k), /url|referrer/.test(k) ? 1000 : 300);
   const missing = REQUIRED.filter((k) => !lead[k]).map((k) => FIELDS[k]);
   if (missing.length) return fail(400, `Please fill in: ${missing.join(', ')}.`);

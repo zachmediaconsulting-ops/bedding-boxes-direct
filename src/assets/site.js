@@ -132,13 +132,57 @@ if (/^\/product\//.test(location.pathname)) track('size_page_view', { box_size: 
 if (CFG.page) track('campaign_landing_page_view', { platform: CFG.page.split('|')[0], campaign_audience: CFG.page.split('|')[1] });
 
 // ---------------------------------------------------------------- lead forms
+// Buttons with data-bundle (deal cards) pick that bundle in the form they link to.
+document.addEventListener('click', (e) => {
+  const b = e.target.closest('[data-bundle]');
+  if (!b) return;
+  const target = document.querySelector(b.getAttribute('href'));
+  const form = target?.matches('form') ? target : target?.querySelector('form[data-lead-form]');
+  if (form?.selectBundle) form.selectBundle(b.dataset.bundle);
+});
 // Fill hidden attribution fields, send to /api/lead, and only report success when the server confirms it.
 const qs = new URLSearchParams(location.search);
 document.querySelectorAll('form[data-lead-form]').forEach((form) => {
   const set = (name, value) => { const el = form.elements[name]; if (el && value != null && !el.value) el.value = value; };
-  // Pre-select sizes/quantity from links like /request-a-quote/?size=9 or ?bundle=10
+  // ---- order type (bundle) + per-size quantities + live summary ----
+  const qty = form.elements.quantity;
+  const summary = form.querySelector('[data-summary]');
+  const BUNDLE_MIN = { 10: 10, 20: 20, '20+': 21 };
+  const bundleLabel = (v) => form.querySelector(`input[name="bundle"][value="${v}"] + span`)?.textContent || '';
+  const sizeRows = [...form.querySelectorAll('.size-check')];
+  function refresh(changedBundle) {
+    let total = 0; const parts = [];
+    sizeRows.forEach((row) => {
+      const cb = row.querySelector('input[type=checkbox]'); const q = row.querySelector('.size-qty');
+      if (q) { q.hidden = !cb.checked; q.disabled = !cb.checked; if (cb.checked && !q.value) q.value = 1; if (!cb.checked) q.value = ''; }
+      if (!cb.checked) return;
+      const n = q ? parseInt(q.value, 10) || 0 : 0;
+      total += n;
+      parts.push(q ? `${n || '?'} × ${cb.dataset.label}` : cb.dataset.label);
+    });
+    const bundle = form.querySelector('input[name="bundle"]:checked')?.value || '';
+    if (total > 0) { qty.value = total; qty.readOnly = true; }
+    else { qty.readOnly = false; if (changedBundle && bundle && (parseInt(qty.value, 10) || 0) < BUNDLE_MIN[bundle]) qty.value = BUNDLE_MIN[bundle]; }
+    const count = parseInt(qty.value, 10) || 0;
+    const bits = [];
+    if (parts.length) bits.push(parts.join(', '));
+    if (count) bits.push(`<strong>${count} box${count === 1 ? '' : 'es'}</strong>`);
+    if (bundle) bits.push(bundleLabel(bundle));
+    let hint = '';
+    if (bundle && count && count < BUNDLE_MIN[bundle]) hint = `Add ${BUNDLE_MIN[bundle] - count} more box${BUNDLE_MIN[bundle] - count === 1 ? '' : 'es'} to reach the ${bundle === '20+' ? 'large fleet' : `${bundle}-box bundle`}.`;
+    else if (!bundle && count >= 20) hint = '20+ boxes qualifies for the 20-box bundle (save 7%) or large fleet pricing. Pick it above.';
+    else if (!bundle && count >= 10) hint = '10+ boxes qualifies for the 10-box bundle (save 5%). Pick it above.';
+    if (summary) { summary.hidden = !bits.length; summary.innerHTML = bits.length ? `<span class="form-summary__title">Your request</span> ${bits.join(' · ')}${hint ? `<span class="form-summary__hint">${hint}</span>` : ''}` : ''; }
+    if (form.elements.inquiry_type && bundle) form.elements.inquiry_type.value = `bundle_${bundle}`;
+  }
+  form.addEventListener('change', (e) => { if (e.target.matches('input[name="sizes"], input[name="bundle"]')) refresh(e.target.name === 'bundle'); });
+  form.addEventListener('input', (e) => { if (e.target.matches('.size-qty, [name="quantity"]')) refresh(false); });
+  form.selectBundle = (v) => { const r = form.querySelector(`input[name="bundle"][value="${v}"]`); if (r) { r.checked = true; refresh(true); } };
+  // Links like /request-a-quote/?size=9 or ?bundle=10 pre-select the form.
   if (qs.get('size')) form.querySelectorAll(`input[name="sizes"][value="${qs.get('size')} yd"]`).forEach((c) => { c.checked = true; });
-  if (qs.get('bundle')) { const n = parseInt(qs.get('bundle'), 10); if (n > 0 && !form.elements.quantity.value) form.elements.quantity.value = n; form.elements.inquiry_type.value = `bundle_${qs.get('bundle')}`; }
+  if (qs.get('size') && qs.get('bundle') && BUNDLE_MIN[qs.get('bundle')]) { const q = form.querySelector(`.size-check:has(input[value="${qs.get('size')} yd"]) .size-qty`); if (q) q.value = BUNDLE_MIN[qs.get('bundle')]; }
+  if (qs.get('bundle')) form.selectBundle(qs.get('bundle'));
+  refresh(Boolean(form.querySelector('input[name="bundle"]:checked')?.value) && !qty.value);
   let started = false;
   form.addEventListener('focusin', () => { if (!started) { started = true; track('form_start', { form_id: form.id }); } });
 

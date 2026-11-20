@@ -231,7 +231,7 @@ export const bundles = {
     ...BUNDLES.map((b, i) => `<section class="section${i % 2 ? '' : ' section--gray'}" id="${b.anchor}"><div class="box grid-2 grid-2--top">
       <div><p class="kicker">Rental fleet &amp; contractor bundle</p><h2>${esc(b.name)}</h2><p class="bundle__off">${b.discount}% OFF</p>
         <div class="prose">${(i === 0 ? bunO.bundle10 : bunO.bundle20).replace(/<h2>(.*?)<\/h2>/, '<h3>$1</h3>')}</div>
-        <div class="btn-row btn-row--left">${button({ text: `Request ${b.short} Pricing`, href: `#bundle-form`, track: 'bundle_inquiry' })}${callButton('sales', { text: 'Call to Order', style: 'dark' })}</div></div>
+        <div class="btn-row btn-row--left">${button({ text: `Request ${b.short} Pricing`, href: `#bundle-form`, track: 'bundle_inquiry', attrs: `data-bundle="${b.boxes}"` })}${callButton('sales', { text: 'Call to Order', style: 'dark' })}</div></div>
       <div class="card card--white"><h3>How the ${b.boxes}-box bundle works</h3><ol><li>Choose any mix of sizes (3, 5, 7, 9, 12, 14 and 18 yard).</li><li>Tell us where they ship: one yard or several job sites/branches.</li><li>We quote the bundle with ${b.discount}% off the total order plus freight.</li><li>Custom paint colors available upon request.</li></ol></div>
     </div></section>`),
     `<section class="section section--red" id="${LARGE_ORDER.anchor}"><div class="box center box--narrow">
@@ -248,7 +248,7 @@ export const bundles = {
         <p>Tick the sizes you want, choose an estimated quantity and tell us how many of each size in the details box. Orders of 20+ boxes and multi-location deliveries are quoted directly by our sales team.</p>
         <ul class="checks">${['Mixed sizes in one order', 'One or multiple delivery locations', 'Custom paint colors on request', 'No cart or checkout: a real person quotes every order'].map((t) => `<li>${icon('check')}${esc(t)}</li>`).join('')}</ul>
         ${phonePair('btn--dark')}</div>
-      <div>${leadForm({ id: 'bundle-form-el', title: 'Fleet / Bundle Inquiry', inquiry: 'bundle', quantity: '10', submit: 'Request Bundle Pricing' })}</div>
+      <div>${leadForm({ id: 'bundle-form-el', title: 'Fleet / Bundle Inquiry', inquiry: 'bundle', quantity: '10', bundle: '10', submit: 'Request Bundle Pricing' })}</div>
     </div></section>`,
     productSectionLite(),
   ]),

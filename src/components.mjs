@@ -4,6 +4,7 @@ import { SITE, mainPhone, phone as phoneFor } from './site.mjs';
 import { PRODUCTS, SPECS, SPEC_ROWS, SPEC_SOURCE, FEATURES, priceText } from './data/products.mjs';
 import { TURNSTILE_SITE_KEY } from './tracking.mjs';
 import { US_STATES } from './data/states.mjs';
+import { BUNDLES } from './data/offers.mjs';
 
 // ---------- buttons ----------
 // data-track adds an analytics event on click (see src/assets/site.js).
@@ -139,7 +140,7 @@ export const chips = (links, center = false) => `<ul class="chips${center ? ' ch
 export const CUSTOMER_TYPES = ['Utility Contractor', 'Equipment Rental Fleet', 'Excavation Contractor', 'Pipeline Contractor', 'Water & Sewer Contractor', 'Municipality / Public Works', 'Civil / Site Development Contractor', 'Telecom / Fiber / Electrical Contractor', 'Trench Safety / Shoring Rental', 'Other'];
 export const HIDDEN_FIELDS = ['landing_page_url', 'landing_page_path', 'form_page_url', 'form_page_path', 'referrer', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid', 'gbraid', 'wbraid', 'fbclid', 'li_fat_id', 'platform', 'campaign_audience', 'submitted_at', 'form_id', 'inquiry_type'];
 
-export function leadForm({ id = 'quote-form', title = 'Request a Quote', platform = '', audience = '', inquiry = 'quote', customerType = '', sizes = [], quantity = '', submit = 'Send My Quote Request', compact = false, state = '' } = {}) {
+export function leadForm({ id = 'quote-form', title = 'Request a Quote', platform = '', audience = '', inquiry = 'quote', customerType = '', sizes = [], quantity = '', bundle = '', submit = 'Send My Quote Request', compact = false, state = '' } = {}) {
   const f = (name) => `${id}-${name}`;
   const sizeOptions = [...PRODUCTS.map((p) => [`${p.size} yd`, `${p.size} Yard`]), ['Custom', 'Custom size'], ['AR500', 'AR500 upgrade'], ['Not sure', 'Not sure yet']];
   return `<form class="form" id="${id}" data-lead-form action="/api/lead" method="post" novalidate>
@@ -152,7 +153,9 @@ export function leadForm({ id = 'quote-form', title = 'Request a Quote', platfor
   <div class="field field--half"><label class="req" for="${f('state')}">State Shipped To</label><select id="${f('state')}" name="state" required autocomplete="address-level1"><option value="">Select…</option>${US_STATES.map((s) => `<option${s.name === state ? ' selected' : ''}>${esc(s.name)}</option>`).join('')}<option>Alaska</option><option>Hawaii</option><option>Outside the US</option></select></div>
   <div class="field field--half"><label class="req" for="${f('type')}">Customer Type</label><select id="${f('type')}" name="customer_type" required><option value="">Select…</option>${CUSTOMER_TYPES.map((t) => `<option${t === customerType ? ' selected' : ''}>${esc(t)}</option>`).join('')}</select></div>
   <div class="field"><label class="req" for="${f('dropoff')}">Drop-off Address</label><input id="${f('dropoff')}" name="dropoff_address" autocomplete="street-address" required maxlength="300" placeholder="Street, city, ZIP (job site or yard) for a freight quote"></div>
-  <fieldset class="field"><legend>Interested Bedding Box Sizes</legend><div class="size-checks">${sizeOptions.map(([v, l]) => `<label><input type="checkbox" name="sizes" value="${esc(v)}"${sizes.includes(v) ? ' checked' : ''}>${esc(l)}</label>`).join('')}</div></fieldset>
+  <fieldset class="field"><legend>Order Type</legend><div class="choice-pills">${[['', 'Individual Boxes'], ...BUNDLES.map((b) => [String(b.boxes), `${b.boxes}-Box Bundle · Save ${b.discount}%`]), ['20+', 'Large Fleet (20+)']].map(([v, l]) => `<label><input type="radio" name="bundle" value="${v}"${v === bundle ? ' checked' : ''}><span>${esc(l)}</span></label>`).join('')}</div></fieldset>
+  <fieldset class="field"><legend>Bedding Box Sizes <span class="field__hint-inline">tick a size, then enter how many</span></legend><div class="size-checks">${sizeOptions.map(([v, l]) => `<div class="size-check"><label><input type="checkbox" name="sizes" value="${esc(v)}" data-label="${esc(l)}"${sizes.includes(v) ? ' checked' : ''}>${esc(l)}</label>${v === 'Not sure' ? '' : `<input class="size-qty" type="number" name="qty_${v.replace(/[^a-z0-9]/gi, '').toLowerCase()}" min="1" max="999" step="1" inputmode="numeric" aria-label="How many ${esc(l)} boxes" placeholder="Qty" hidden disabled required>`}</div>`).join('')}</div></fieldset>
+  <div class="form-summary" data-summary role="status" aria-live="polite" hidden></div>
   <div class="field field--half"><label class="req" for="${f('qty')}">Estimated Quantity</label><input id="${f('qty')}" name="quantity" type="number" inputmode="numeric" min="1" max="9999" step="1" required placeholder="Number of boxes, e.g. 12"${quantity ? ` value="${esc(quantity)}"` : ''}></div>
   <div class="field field--half"><label for="${f('timeline')}">Timeline</label><select id="${f('timeline')}" name="timeline"><option value="">Select…</option><option>As soon as possible</option><option>Within 30 days</option><option>1–3 months</option><option>Planning / budgeting</option></select></div>
   <div class="field"><label for="${f('msg')}">Message or Project Details</label><textarea id="${f('msg')}" name="message" rows="${compact ? 3 : 4}" maxlength="4000" placeholder="Sizes and quantities, delivery location(s), custom colors, project timing…"></textarea></div>

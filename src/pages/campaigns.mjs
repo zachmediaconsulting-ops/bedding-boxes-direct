@@ -12,14 +12,14 @@ function dealsWithMath() {
   const [one, ten, twenty] = rentalExamples();
   const [b10, b20] = BUNDLES;
   const cards = [
-    { off: `${b10.discount}% OFF`, name: b10.name, savings: b10.savings, math: ten, btn: `${b10.short} Quote`, featured: true },
-    { off: `${b20.discount}% OFF`, name: b20.name, savings: b20.savings, math: twenty, btn: `${b20.short} Quote` },
-    { off: '20+', name: 'Large Fleet Orders', savings: 'Best terms by phone', math: { ...one, label: 'Every box: one 9-yard box' }, btn: 'Discuss Your Fleet' },
+    { off: `${b10.discount}% OFF`, name: b10.name, savings: b10.savings, math: ten, btn: `${b10.short} Quote`, featured: true, bundle: String(b10.boxes) },
+    { off: `${b20.discount}% OFF`, name: b20.name, savings: b20.savings, math: twenty, btn: `${b20.short} Quote`, bundle: String(b20.boxes) },
+    { off: '20+', name: 'Large Fleet Orders', savings: 'Best terms by phone', math: { ...one, label: 'Every box: one 9-yard box' }, btn: 'Discuss Your Fleet', bundle: '20+' },
   ];
   const mathBlock = (x) => `<div class="deal-math"><p class="deal-math__label">${esc(x.label)}</p><p class="roi-card__stat">${esc(x.stat)}</p><p class="roi-card__stat-label">${esc(x.statLabel)}</p><dl>${x.lines.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl><p class="roi-card__text">${esc(x.text)}</p></div>`;
   return `<section class="section section--gray" id="volume-deals"><div class="box">
     ${sectionHead({ kicker: 'Multi-box deals', title: 'Buy More. [Save More.]', text: 'Mix and match any sizes. Each deal below shows how the boxes pay for themselves in a rental fleet, worked out from our list prices and published market rental rates.' })}
-    <div class="grid-3 deal-cards">${cards.map((c) => `<div class="bundle deal-card${c.featured ? ' bundle--featured' : ''}"><div class="bundle__off">${c.off}</div><p class="bundle__savings">${esc(c.name)}<br>${esc(c.savings)}</p>${mathBlock(c.math)}${button({ text: c.btn, href: '#get-quote', style: 'sm', track: 'bundle_inquiry' })}</div>`).join('')}</div>
+    <div class="grid-3 deal-cards">${cards.map((c) => `<div class="bundle deal-card${c.featured ? ' bundle--featured' : ''}"><div class="bundle__off">${c.off}</div><p class="bundle__savings">${esc(c.name)}<br>${esc(c.savings)}</p>${mathBlock(c.math)}${button({ text: c.btn, href: '#get-quote', style: 'sm', track: 'bundle_inquiry', attrs: `data-bundle="${c.bundle}"` })}</div>`).join('')}</div>
     <p class="disclaimer" style="margin-top:20px;text-align:center;max-width:900px;margin-inline:auto">${esc(RENTAL_NOTE)}</p>
   </div></section>`;
 }
@@ -41,10 +41,10 @@ function campaignPage(d) {
           <ul class="checks">${d.bullets.map((b) => `<li>${icon('check')}${esc(b)}</li>`).join('')}</ul>
           <div class="btn-row btn-row--left">${button({ text: d.formTitle, href: '#get-quote' })}</div>
         </div>
-        <div id="get-quote">${leadForm({ id: formId, title: d.formTitle, platform: d.platform, audience: d.audience, inquiry: `campaign_${d.platform}_${d.audience}`, customerType: d.customerType, quantity: d.quantity, submit: d.formTitle, compact: true })}</div>
+        <div id="get-quote">${leadForm({ id: formId, title: d.formTitle, platform: d.platform, audience: d.audience, inquiry: `campaign_${d.platform}_${d.audience}`, customerType: d.customerType, quantity: d.quantity, bundle: d.quantity === '10' ? '10' : d.quantity === '20' ? '20' : '', submit: d.formTitle, compact: true })}</div>
       </div></section>`,
       // Same "Buy More. Save More." section as the rest of the site; buttons stay on this page (jump to the form).
-      d.audience === 'rental_fleet' ? dealsWithMath() : bundleTeaser(BUNDLES).replace(/href="[^"]*(?:request-a-quote|fleet-bedding-box-bundles)[^"]*"/g, 'href="#get-quote"'),
+      d.audience === 'rental_fleet' ? dealsWithMath() : bundleTeaser(BUNDLES).replace(/href="[^"]*request-a-quote\/\?bundle=(\d+)"/g, 'href="#get-quote" data-bundle="$1"').replace(/href="[^"]*fleet-bedding-box-bundles[^"]*"/g, 'href="#get-quote" data-bundle="20+"'),
       // All sizes: photo, name and price only (no buttons/badges) — on every ad page, right below the multi-box deals.
       `<section class="section"><div class="box">${sectionHead({ title: 'Sizes & [Prices]' })}<div class="products">${PRODUCTS.map((p) => `<div class="product-card product-card--simple">${img(p.image, `${p.size} yard bedding box`, { sizes: '(max-width: 767px) 100vw, 300px' })}<div class="product-card__body"><h3>${p.size} Yard Bedding Box</h3><p class="product-card__price">${priceText(p)}</p></div></div>`).join('')}</div></div></section>`,
       `<section class="section"><div class="box">

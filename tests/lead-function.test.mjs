@@ -36,7 +36,7 @@ test('valid lead is emailed with attribution and returns an id', async () => {
   assert.equal(res.status, 200); assert.equal(out.ok, true); assert.match(out.id, /^BBD-\d{8}-[0-9A-F]{6}$/);
   const email = JSON.parse(sent.at(-1).body);
   assert.equal(email.subject, 'NEW LEAD | META | UTILITY CONTRACTORS | 10 BOX INQUIRY');
-  assert.match(email.html, /fbclid/); assert.match(email.html, /\/meta\/utility-contractors\//); assert.match(email.text, /Interested sizes: 9 yd/);
+  assert.match(email.html, /fbclid/); assert.match(email.html, /\/meta\/utility-contractors\//); assert.match(email.text, /Sizes & quantities: 9 yd/);
 });
 
 test('never claims success when not configured', async () => {
@@ -59,6 +59,19 @@ test('requires a drop-off address and a whole-number quantity', async () => {
   assert.equal(res.status, 200);
   assert.match(JSON.parse(sent.at(-1).body).subject, /37 BOX INQUIRY$/);
   assert.match(JSON.parse(sent.at(-1).body).text, /Drop-off address: 123 Main St, Columbus, OH 43215/);
+});
+
+test('per-size quantities and order type reach the email; total follows the sizes', async () => {
+  const fd = { quantity: '1', bundle: '10' };
+  const r = req(fd, { sizes: ['12 yd', '9 yd'] });
+  const body = await r.formData(); body.append('qty_12yd', '4'); body.append('qty_9yd', '6');
+  const res = await onRequestPost({ request: new Request('https://x/api/lead', { method: 'POST', body, headers: { 'cf-connecting-ip': '10.9.9.9' } }), env: ENV });
+  assert.equal(res.status, 200);
+  const email = JSON.parse(sent.at(-1).body);
+  assert.match(email.text, /Sizes & quantities: 4 × 12 yd, 6 × 9 yd/);
+  assert.match(email.text, /Total boxes: 10/);
+  assert.match(email.text, /Order type: 10-box bundle/);
+  assert.match(email.subject, /10 BOX INQUIRY$/);
 });
 
 test('rejects missing required fields and bad email', async () => {
