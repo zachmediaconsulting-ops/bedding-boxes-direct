@@ -14,12 +14,18 @@ toggle?.addEventListener('click', () => {
   toggle.setAttribute('aria-expanded', String(open));
   document.body.style.overflow = open ? 'hidden' : '';
 });
+// The caret button opens the phone submenu, or the desktop mega panel (keyboard / touch-screen laptops).
+const closeMegas = (except) => document.querySelectorAll('.mega.is-open').forEach((m) => { if (m !== except) { m.classList.remove('is-open'); m.parentElement.querySelector('.menu__sub-toggle')?.setAttribute('aria-expanded', 'false'); } });
 document.querySelectorAll('.menu__sub-toggle').forEach((b) => b.addEventListener('click', () => {
   const sub = document.getElementById(b.getAttribute('aria-controls'));
+  const mega = b.parentElement.querySelector('.mega');
   const open = b.getAttribute('aria-expanded') !== 'true';
   b.setAttribute('aria-expanded', String(open));
   sub.classList.toggle('is-open', open);
+  if (mega) { closeMegas(mega); mega.classList.toggle('is-open', open); }
 }));
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMegas(); });
+document.addEventListener('click', (e) => { if (!e.target.closest('.has-mega')) closeMegas(); });
 
 // ---------------------------------------------------------------- media
 // YouTube loads only when the visitor presses play.
@@ -196,10 +202,10 @@ if (location.pathname === '/thank-you/') {
 }
 
 // ---------------------------------------------------------------- rent vs. buy calculator (formulas from the original page)
-const calc = document.getElementById('calc-form');
-calc?.addEventListener('submit', (e) => {
+// Used by the calculator page (#calc-form) and the quick calculator in the Resources menu ([data-calc]).
+document.querySelectorAll('#calc-form, form[data-calc]').forEach((calc) => calc.addEventListener('submit', (e) => {
   e.preventDefault();
-  const v = (id) => parseFloat(document.getElementById(id).value);
+  const v = (id) => parseFloat(calc.elements[id].value);
   const purchasePrice = v('purchasePrice') || 0;
   const lifespan = v('lifespan') || 1;
   const resaleValue = v('resaleValue') || 0;
@@ -219,8 +225,8 @@ calc?.addEventListener('submit', (e) => {
   } else {
     html += '<p>Your annual costs are roughly equal—either option could work.</p>';
   }
-  const out = document.getElementById('calc-result');
-  out.innerHTML = `${html}<p><a class="btn btn--sm" href="/request-a-quote/" data-track="quote_request_click">Get a Quote on a Box</a></p>`;
+  const out = calc.querySelector('[data-calc-result]') || document.getElementById('calc-result');
+  out.innerHTML = calc.matches('[data-calc]') ? html : `${html}<p><a class="btn btn--sm" href="/request-a-quote/" data-track="quote_request_click">Get a Quote on a Box</a></p>`;
   out.hidden = false;
   track('calculator_used', { decision: rentalCost > ownershipCost ? 'buy' : 'rent' });
-});
+}));

@@ -5,7 +5,9 @@ import { PRODUCTS } from '../data/products.mjs';
 export const NAV = [
   { label: 'Home', href: '/' },
   {
-    label: 'Bedding Boxes', href: '/all-bedding-boxes-for-sale/', items: [
+    label: 'Bedding Boxes', href: '/all-bedding-boxes-for-sale/',
+    mega: { type: 'image', image: '12-yard-bedding-box-for-sale-7', alt: 'Blue Bedding Boxes Direct bedding boxes on the manufacturing lot', title: 'Shop All Bedding Boxes' },
+    items: [
       { label: 'All Sizes', href: '/all-bedding-boxes-for-sale/' },
       ...PRODUCTS.map((p) => ({ label: `${p.size} Yard Bedding Box`, href: p.path })),
       { label: 'Custom Bedding Boxes', href: '/bedding-box-fabrication-company/' },
@@ -14,7 +16,9 @@ export const NAV = [
     ],
   },
   {
-    label: 'Industries', href: '/industries/', items: [
+    label: 'Industries', href: '/industries/',
+    mega: { type: 'image', image: 'what-are-bedding-boxes-used-for', alt: 'Excavator digging a utility trench', title: 'Industries We Serve' },
+    items: [
       { label: 'Utility Contractors', href: '/bedding-boxes-for-utility-companies/' },
       { label: 'Equipment Rental Fleets', href: '/industries/equipment-rental-fleets/' },
       { label: 'Underground Utilities', href: '/industries/underground-utility-construction/' },
@@ -27,14 +31,18 @@ export const NAV = [
     ],
   },
   {
-    label: 'Volume Deals', href: '/fleet-bedding-box-bundles/', items: [
+    label: 'Volume Deals', href: '/fleet-bedding-box-bundles/',
+    mega: { type: 'deals' },
+    items: [
       { label: '10-Box Bundle (Save 5%)', href: '/fleet-bedding-box-bundles/#10-bedding-box-bundle' },
       { label: '20-Box Bundle (Save 7%)', href: '/fleet-bedding-box-bundles/#20-bedding-box-bundle' },
       { label: 'Large Fleet Orders', href: '/fleet-bedding-box-bundles/#large-fleet-orders' },
     ],
   },
   {
-    label: 'Resources', href: '/blog/', items: [
+    label: 'Resources', href: '/blog/',
+    mega: { type: 'resources', pdf: '/media/bedding-box-specifications.pdf' },
+    items: [
       { label: 'Size Selection Guide', href: '/what-size-bedding-box-do-i-need/' },
       { label: 'Uses and Applications', href: '/what-is-a-bedding-box-used-for/' },
       { label: 'Rent vs. Buy Calculator', href: '/bedding-box-rent-vs-buy-calculator/' },
@@ -42,6 +50,11 @@ export const NAV = [
       { label: 'Bedding Boxes by State', href: '/bedding-boxes-for-sale/' },
       { label: 'All Resources', href: '/blog/' },
     ],
+  },
+  {
+    label: 'States', href: '/bedding-boxes-for-sale/',
+    mega: { type: 'states' },
+    items: [{ label: 'All States', href: '/bedding-boxes-for-sale/' }, ...US_STATES.map((s) => ({ label: s.name, href: statePath(s) }))],
   },
   { label: 'About', href: '/about-bedding-boxes-direct/' },
   { label: 'Contact', href: '/contact-us/' },

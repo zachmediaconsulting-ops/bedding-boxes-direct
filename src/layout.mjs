@@ -3,18 +3,60 @@ import { esc, icon, img, imageUrl } from './lib.mjs';
 import { SITE, mainPhone, phone as phoneFor } from './site.mjs';
 import { NAV, FOOTER, LEGAL, DIRECTORY } from './content/navigation.mjs';
 import { TRACKING, TURNSTILE_SITE_KEY, clientConfig } from './tracking.mjs';
+import { BUNDLES, LARGE_ORDER } from './data/offers.mjs';
+import { PRODUCTS } from './data/products.mjs';
 
 const cur = (href, path) => (href === path ? ' aria-current="page"' : '');
 
+// Desktop: each dropdown is a full-width mega panel (420px) that slides down from behind the header.
+// Phones: the same group becomes a simple expandable list (.submenu) in the hamburger menu.
+function megaPanel(g, path) {
+  const m = g.mega;
+  const links = (cls = 'mega__links') => `<ul class="${cls}">${g.items.map((x) => `<li${/^All /.test(x.label) ? ' class="mega__all"' : ''}><a href="${x.href}"${cur(x.href, path)}>${esc(x.label)}</a></li>`).join('')}</ul>`;
+  if (m.type === 'image') {
+    return `<div class="mega__grid mega__grid--image">
+      <div class="mega__media">${img(m.image, m.alt, { sizes: '66vw' })}</div>
+      <div class="mega__body"><a class="mega__title" href="${g.href}">${esc(m.title)} <span aria-hidden="true">›</span></a>${links(g.items.length > 9 ? 'mega__links mega__links--2col' : 'mega__links')}</div>
+    </div>`;
+  }
+  if (m.type === 'deals') {
+    const deal = (off, name, text, href, label, featured) => `<div class="mega-deal${featured ? ' mega-deal--featured' : ''}"><div class="mega-deal__off">${off}</div><p class="mega-deal__name">${name}</p><p>${esc(text)}</p><a class="btn btn--sm" href="${href}" data-track="bundle_inquiry">${esc(label)}</a></div>`;
+    return `<div class="mega__grid mega__grid--deals box">
+      <div class="mega__intro"><p class="kicker">Multi-box deals</p><h2>Buy More. <span class="accent">Save More.</span></h2><p>Mix and match any sizes. Bundle pricing for rental fleets and utility contractors standardizing their equipment.</p><a class="mega__title" href="${g.href}">All volume deals <span aria-hidden="true">›</span></a></div>
+      ${BUNDLES.map((b, i) => deal(`${b.discount}% OFF`, `${esc(b.name)}<br>${esc(b.savings)}`, b.audience, `/fleet-bedding-box-bundles/#${b.anchor}`, `${b.short} Quote`, i === 0)).join('')}
+      ${deal('20+', 'Large Fleet Orders<br>Best terms by phone', 'Multi-location and multistage orders with individual or multi-location delivery.', `/fleet-bedding-box-bundles/#${LARGE_ORDER.anchor}`, 'Discuss Your Fleet')}
+    </div>`;
+  }
+  if (m.type === 'resources') {
+    return `<div class="mega__grid mega__grid--resources box">
+      <div class="mega__intro"><p class="kicker">Resources</p><h2>Know Your <span class="accent">Box</span></h2><p>Every size, dimension, steel thickness and recommended machine range on one sheet.</p><a class="btn btn--sm" href="${m.pdf}" target="_blank" rel="noopener" data-track="spec_sheet_download">Download Spec Sheet (PDF)</a></div>
+      <form class="mega-calc" data-calc>
+        <h3>Rent vs. Buy: Quick Check</h3>
+        <label>Box size<select name="purchasePrice">${PRODUCTS.map((p) => `<option value="${p.price}"${p.size === 9 ? ' selected' : ''}>${p.size} yd · $${p.price.toLocaleString('en-US')}</option>`).join('')}</select></label>
+        <div class="mega-calc__row"><label>Days per job<input name="daysPerJob" type="number" inputmode="decimal" min="0" value="5"></label><label>Jobs per year<input name="jobsPerYear" type="number" inputmode="decimal" min="0" value="12"></label></div>
+        <input type="hidden" name="lifespan" value="10"><input type="hidden" name="resaleValue" value="2500"><input type="hidden" name="rentalRate" value="225">
+        <button class="btn btn--sm" type="submit">Calculate</button>
+        <div class="mega-calc__result" data-calc-result role="status" aria-live="polite"></div>
+      </form>
+      <div class="mega__body mega__body--plain">${links()}</div>
+    </div>`;
+  }
+  return `<div class="mega__grid mega__grid--states box">
+    <div class="mega__intro"><p class="kicker">Nationwide shipping</p><h2>Bedding Boxes <span class="accent">by State</span></h2><p>We ship to all 48 continental states. Pick yours for local conditions, sizes and your sales line.</p><a class="btn btn--sm" href="${g.href}">All States</a></div>
+    <ul class="mega__states">${g.items.filter((x) => !/^All /.test(x.label)).map((x) => `<li><a href="${x.href}"${cur(x.href, path)}>${esc(x.label)}</a></li>`).join('')}</ul>
+  </div>`;
+}
+
 function menu(path) {
   return NAV.map((g, i) => {
-    if (!g.items) return `<li${g.href === path ? ' class="is-current"' : ''}><a class="menu__link" href="${g.href}"${cur(g.href, path)}>${esc(g.label)}</a></li>`;
+    if (!g.items) return `<li class="menu__item--${g.label.toLowerCase()}${g.href === path ? ' is-current' : ''}"><a class="menu__link" href="${g.href}"${cur(g.href, path)}>${esc(g.label)}</a></li>`;
     const inGroup = g.href === path || g.items.some((x) => x.href === path);
     const id = `sub-${i}`;
-    return `<li${inGroup ? ' class="is-current"' : ''}>
+    return `<li class="has-mega${inGroup ? ' is-current' : ''}">
       <a class="menu__link" href="${g.href}"${cur(g.href, path)}>${esc(g.label)}</a>
       <button class="menu__sub-toggle" type="button" aria-expanded="false" aria-controls="${id}" aria-label="Show ${esc(g.label)} pages">${icon('caret')}</button>
       <ul class="submenu" id="${id}">${g.items.map((x) => `<li${/^All /.test(x.label) ? ' class="submenu__all"' : ''}><a href="${x.href}"${cur(x.href, path)}>${esc(x.label)}</a></li>`).join('')}</ul>
+      ${g.mega ? `<div class="mega" id="${id}-mega">${megaPanel(g, path)}</div>` : ''}
     </li>`;
   }).join('');
 }

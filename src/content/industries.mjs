@@ -42,7 +42,7 @@ export const INDUSTRIES = [
     description: 'Bedding boxes for underground utility construction: stage clean bedding stone at the trench for water, sewer, storm, gas, electric and telecom lines. American made.',
     kicker: 'Primary market · Underground utilities',
     summary: 'Stage clean bedding stone at the trench for every kind of underground utility line.',
-    image: 'bedding-boxes-for-utility-companies',
+    image: 'what-are-bedding-boxes-used-for',
     intro: [
       'Underground utility work runs on bedding material. Whether the line is a water main, a sanitary or storm sewer, a gas main, an electrical duct bank or a fiber conduit, the pipe or conduit needs a consistent layer of clean stone or sand below and around it. Getting that material from the stockpile to the trench is where crews lose time.',
       'A bedding box lets the excavator take material from a box staged beside the trench instead of waiting on a loader or swinging back to a distant pile. The box is moved along the trench as the work advances, so bedding is always within reach of the machine laying the pipe.',

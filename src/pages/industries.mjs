@@ -84,7 +84,7 @@ const UTILITY_POINTS = [
 
 export const utilityCompanies = originalIndustry({
   path: '/bedding-boxes-for-utility-companies/', label: 'Utility Contractors', h1: 'Bedding Boxes for Utility Contractors & Utility Companies',
-  image: 'bedding-boxes-for-utility-companies', summary: 'Our primary customers: crews installing water, sewer, storm, gas, electric and telecom lines.',
+  image: 'what-are-bedding-boxes-used-for', summary: 'Our primary customers: crews installing water, sewer, storm, gas, electric and telecom lines.',
   main: `${utO.headline}${utO.intro}${utO.reasons}${utO.applications}`,
   aside: utO.aside, caseStudy: utO.caseStudy,
   form: { inquiry: 'industry_utility', customerType: 'Utility Contractor' },
@@ -136,7 +136,7 @@ export const industriesHub = {
   path: '/industries/', label: 'Industries', h1: 'Industries We Serve',
   title: 'Bedding Boxes by Industry | Bedding Boxes Direct',
   description: 'Bedding boxes for utility contractors, equipment rental fleets, water and sewer, pipeline, excavation, municipal, telecom, electrical and site development work.',
-  summary: 'Utility contractors, rental fleets and every crew that trenches for a living.', image: 'bedding-boxes-for-utility-companies',
+  summary: 'Utility contractors, rental fleets and every crew that trenches for a living.', image: 'what-are-bedding-boxes-used-for',
   render: (c) => join([
     pageTitle({ h1: 'Industries We Serve', crumbs: c.crumbs, text: 'Utility contractors are our primary customers and equipment rental fleets our second. Find the page for your work.' }),
     linkCards({ pages: INDUSTRY_ORDER.map(c.card), gray: false }),

@@ -111,13 +111,13 @@ export const privacy = {
 // ---------------------------------------------------------------- guides
 export const whatIs = {
   path: '/what-is-a-bedding-box-used-for/', label: 'What is a bedding box used for?', h1: 'What is a bedding box used for?', crumbs: [RES],
-  summary: 'Uses and applications: how gravel and stone boxes work on excavation, trenching and utility projects.', image: 'bedding-boxes-for-utility-companies', ogImage: 'bedding-boxes-for-utility-companies',
+  summary: 'Uses and applications: how gravel and stone boxes work on excavation, trenching and utility projects.', image: 'what-are-bedding-boxes-used-for', ogImage: 'what-are-bedding-boxes-used-for',
   pageType: 'Article',
   render: (c) => join([
     pageTitle({ h1: 'What is a bedding box used for?', crumbs: c.crumbs }),
     `<section class="section"><div class="box layout-aside">
       <article class="prose">${whatO.headline}
-        <figure style="margin:0 0 1.2em">${img('bedding-boxes-for-utility-companies', 'Excavator returning from a gravel pile to place bedding material', { sizes: '(max-width: 959px) 100vw, 680px' })}<figcaption class="caption">${whatO.caption.replace(/<\/?p>/g, '')}</figcaption></figure>
+        <figure style="margin:0 0 1.2em">${img('what-are-bedding-boxes-used-for', 'Excavator returning from a gravel pile to place bedding material', { sizes: '(max-width: 959px) 100vw, 680px' })}<figcaption class="caption">${whatO.caption.replace(/<\/?p>/g, '')}</figcaption></figure>
         ${whatO.body}
         <p><strong>Safety note:</strong> ${esc(NOT_SHORING)}</p>
       </article>
