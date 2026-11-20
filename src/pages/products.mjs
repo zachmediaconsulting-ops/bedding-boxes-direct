@@ -248,7 +248,7 @@ export const bundles = {
         <p>Tick the sizes you want, choose an estimated quantity and tell us how many of each size in the details box. Orders of 20+ boxes and multi-location deliveries are quoted directly by our sales team.</p>
         <ul class="checks">${['Mixed sizes in one order', 'One or multiple delivery locations', 'Custom paint colors on request', 'No cart or checkout: a real person quotes every order'].map((t) => `<li>${icon('check')}${esc(t)}</li>`).join('')}</ul>
         ${phonePair('btn--dark')}</div>
-      <div>${leadForm({ id: 'bundle-form-el', title: 'Fleet / Bundle Inquiry', inquiry: 'bundle', quantity: '10–19 boxes (10-box bundle)', submit: 'Request Bundle Pricing' })}</div>
+      <div>${leadForm({ id: 'bundle-form-el', title: 'Fleet / Bundle Inquiry', inquiry: 'bundle', quantity: '10', submit: 'Request Bundle Pricing' })}</div>
     </div></section>`,
     productSectionLite(),
   ]),

@@ -138,7 +138,7 @@ document.querySelectorAll('form[data-lead-form]').forEach((form) => {
   const set = (name, value) => { const el = form.elements[name]; if (el && value != null && !el.value) el.value = value; };
   // Pre-select sizes/quantity from links like /request-a-quote/?size=9 or ?bundle=10
   if (qs.get('size')) form.querySelectorAll(`input[name="sizes"][value="${qs.get('size')} yd"]`).forEach((c) => { c.checked = true; });
-  if (qs.get('bundle')) { const q = form.elements.quantity; const want = qs.get('bundle') === '10' ? '10–19' : qs.get('bundle') === '20' ? '20 boxes' : 'More than 20'; [...q.options].forEach((o) => { if (o.text.startsWith(want)) q.value = o.value; }); form.elements.inquiry_type.value = `bundle_${qs.get('bundle')}`; }
+  if (qs.get('bundle')) { const n = parseInt(qs.get('bundle'), 10); if (n > 0 && !form.elements.quantity.value) form.elements.quantity.value = n; form.elements.inquiry_type.value = `bundle_${qs.get('bundle')}`; }
   let started = false;
   form.addEventListener('focusin', () => { if (!started) { started = true; track('form_start', { form_id: form.id }); } });
 
@@ -168,7 +168,7 @@ document.querySelectorAll('form[data-lead-form]').forEach((form) => {
       if (!res.ok || !out.ok) throw new Error(out.error || 'Your request could not be sent.');
       const sizes = data.getAll('sizes').join(', ');
       track('form_submit_success', { form_id: form.id, lead_id: out.id, box_sizes: sizes, quantity: data.get('quantity'), state: data.get('state'), customer_type: data.get('customer_type') });
-      if (/bundle|10–19|20 boxes|More than 20/.test(`${data.get('inquiry_type')} ${data.get('quantity')}`)) track('bundle_inquiry', { form_id: form.id, quantity: data.get('quantity') });
+      if (/bundle/.test(data.get('inquiry_type')) || Number(data.get('quantity')) >= 10) track('bundle_inquiry', { form_id: form.id, quantity: data.get('quantity') });
       store.set('bbd_lead_pending', { id: out.id, platform: data.get('platform'), audience: data.get('campaign_audience'), quantity: data.get('quantity'), sizes, state: data.get('state'), customer_type: data.get('customer_type'), email: data.get('email'), phone: data.get('phone') }, sessionStorage);
       location.href = `/thank-you/?lead=${encodeURIComponent(out.id)}`;
     } catch (err) {

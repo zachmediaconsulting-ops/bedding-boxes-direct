@@ -32,7 +32,5 @@ export const BUNDLE_BENEFITS = [
   ['Large-order quotations', 'Orders over 20 boxes are quoted directly by our sales team.'],
 ];
 
-// Quantity choices shown on every lead form ("Estimated Quantity").
-export const QUANTITY_OPTIONS = ['1 box', '2–4 boxes', '5–9 boxes', '10–19 boxes (10-box bundle)', '20 boxes (20-box bundle)', 'More than 20 boxes'];
 
 export const discountText = (b) => `Save ${b.discount}%`;

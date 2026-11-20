@@ -2,7 +2,6 @@
 import { esc, icon, img, join, money } from './lib.mjs';
 import { SITE, mainPhone, phone as phoneFor } from './site.mjs';
 import { PRODUCTS, SPECS, SPEC_ROWS, SPEC_SOURCE, FEATURES, priceText } from './data/products.mjs';
-import { QUANTITY_OPTIONS } from './data/offers.mjs';
 import { TURNSTILE_SITE_KEY } from './tracking.mjs';
 import { US_STATES } from './data/states.mjs';
 
@@ -150,10 +149,11 @@ export function leadForm({ id = 'quote-form', title = 'Request a Quote', platfor
   <div class="field field--half"><label class="req" for="${f('company')}">Company Name</label><input id="${f('company')}" name="company" autocomplete="organization" required maxlength="160"></div>
   <div class="field field--half"><label class="req" for="${f('email')}">Email Address</label><input id="${f('email')}" name="email" type="email" autocomplete="email" required maxlength="160"></div>
   <div class="field field--half"><label class="req" for="${f('phone')}">Phone Number</label><input id="${f('phone')}" name="phone" type="tel" autocomplete="tel" required pattern="[0-9()+\\-. ]{7,25}" title="Numbers and phone characters only"></div>
-  <div class="field field--half"><label class="req" for="${f('state')}">State</label><select id="${f('state')}" name="state" required autocomplete="address-level1"><option value="">Select…</option>${US_STATES.map((s) => `<option${s.name === state ? ' selected' : ''}>${esc(s.name)}</option>`).join('')}<option>Alaska</option><option>Hawaii</option><option>Outside the US</option></select></div>
+  <div class="field field--half"><label class="req" for="${f('state')}">State Shipped To</label><select id="${f('state')}" name="state" required autocomplete="address-level1"><option value="">Select…</option>${US_STATES.map((s) => `<option${s.name === state ? ' selected' : ''}>${esc(s.name)}</option>`).join('')}<option>Alaska</option><option>Hawaii</option><option>Outside the US</option></select></div>
   <div class="field field--half"><label class="req" for="${f('type')}">Customer Type</label><select id="${f('type')}" name="customer_type" required><option value="">Select…</option>${CUSTOMER_TYPES.map((t) => `<option${t === customerType ? ' selected' : ''}>${esc(t)}</option>`).join('')}</select></div>
+  <div class="field"><label class="req" for="${f('dropoff')}">Drop-off Address</label><input id="${f('dropoff')}" name="dropoff_address" autocomplete="street-address" required maxlength="300" placeholder="Street, city, ZIP (job site or yard) for a freight quote"></div>
   <fieldset class="field"><legend>Interested Bedding Box Sizes</legend><div class="size-checks">${sizeOptions.map(([v, l]) => `<label><input type="checkbox" name="sizes" value="${esc(v)}"${sizes.includes(v) ? ' checked' : ''}>${esc(l)}</label>`).join('')}</div></fieldset>
-  <div class="field field--half"><label class="req" for="${f('qty')}">Estimated Quantity</label><select id="${f('qty')}" name="quantity" required><option value="">Select…</option>${QUANTITY_OPTIONS.map((q) => `<option${q === quantity ? ' selected' : ''}>${esc(q)}</option>`).join('')}</select></div>
+  <div class="field field--half"><label class="req" for="${f('qty')}">Estimated Quantity</label><input id="${f('qty')}" name="quantity" type="number" inputmode="numeric" min="1" max="9999" step="1" required placeholder="Number of boxes, e.g. 12"${quantity ? ` value="${esc(quantity)}"` : ''}></div>
   <div class="field field--half"><label for="${f('timeline')}">Timeline</label><select id="${f('timeline')}" name="timeline"><option value="">Select…</option><option>As soon as possible</option><option>Within 30 days</option><option>1–3 months</option><option>Planning / budgeting</option></select></div>
   <div class="field"><label for="${f('msg')}">Message or Project Details</label><textarea id="${f('msg')}" name="message" rows="${compact ? 3 : 4}" maxlength="4000" placeholder="Sizes and quantities, delivery location(s), custom colors, project timing…"></textarea></div>
   ${HIDDEN_FIELDS.map((n) => `<input type="hidden" name="${n}" value="${esc(n === 'platform' ? platform : n === 'campaign_audience' ? audience : n === 'form_id' ? id : n === 'inquiry_type' ? inquiry : '')}">`).join('')}

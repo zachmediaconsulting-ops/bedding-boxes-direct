@@ -19,28 +19,21 @@ export const RATE_LIMIT = { max: 5, windowMs: 10 * 60 * 1000 }; // per IP
 export const DUPLICATE_WINDOW_MS = 30 * 60 * 1000;
 
 export const FIELDS = {
-  full_name: 'Full name', company: 'Company', email: 'Email', phone: 'Phone', state: 'State',
+  full_name: 'Full name', company: 'Company', email: 'Email', phone: 'Phone', state: 'State shipped to', dropoff_address: 'Drop-off address',
   customer_type: 'Customer type', sizes: 'Interested sizes', quantity: 'Estimated quantity', timeline: 'Timeline', message: 'Message / project details',
 };
 export const ATTRIBUTION = [
   'platform', 'campaign_audience', 'inquiry_type', 'form_id', 'landing_page_url', 'landing_page_path', 'form_page_url', 'form_page_path', 'referrer',
   'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid', 'gbraid', 'wbraid', 'fbclid', 'li_fat_id', 'submitted_at',
 ];
-const REQUIRED = ['full_name', 'company', 'email', 'phone', 'state', 'customer_type', 'quantity'];
+const REQUIRED = ['full_name', 'company', 'email', 'phone', 'state', 'dropoff_address', 'customer_type', 'quantity'];
 
 const PLATFORM_LABEL = {
   meta: 'META', google_ads: 'GOOGLE ADS', google: 'GOOGLE', linkedin: 'LINKEDIN', organic_search: 'ORGANIC SEARCH',
   direct: 'DIRECT', referral: 'REFERRAL',
 };
-const QTY_LABEL = (q) => {
-  if (/^1 box/.test(q)) return '1 BOX';
-  if (/^2–4/.test(q)) return '2–4 BOX';
-  if (/^5–9/.test(q)) return '5–9 BOX';
-  if (/^10/.test(q)) return '10 BOX';
-  if (/^20 boxes/.test(q)) return '20 BOX';
-  if (/More than 20/.test(q)) return '20+ BOX';
-  return 'QUOTE';
-};
+// Quantity is an exact number of boxes; the subject shows it, e.g. "12 BOX INQUIRY".
+const QTY_LABEL = (q) => { const n = parseInt(q, 10); return n > 0 ? `${n} BOX` : 'QUOTE'; };
 
 const json = (status, body) => new Response(JSON.stringify(body), { status, headers: { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store' } });
 const fail = (status, error) => json(status, { ok: false, error });
@@ -103,12 +96,13 @@ export async function onRequestPost({ request, env }) {
 
   // ---- validate ----
   const lead = {};
-  for (const k of Object.keys(FIELDS)) lead[k] = k === 'sizes' ? form.getAll('sizes').map((s) => clean(s, 30)).filter(Boolean).slice(0, 12).join(', ') : clean(form.get(k), k === 'message' ? 4000 : 200);
+  for (const k of Object.keys(FIELDS)) lead[k] = k === 'sizes' ? form.getAll('sizes').map((s) => clean(s, 30)).filter(Boolean).slice(0, 12).join(', ') : clean(form.get(k), k === 'message' ? 4000 : k === 'dropoff_address' ? 300 : 200);
   for (const k of ATTRIBUTION) lead[k] = clean(form.get(k), /url|referrer/.test(k) ? 1000 : 300);
   const missing = REQUIRED.filter((k) => !lead[k]).map((k) => FIELDS[k]);
   if (missing.length) return fail(400, `Please fill in: ${missing.join(', ')}.`);
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(lead.email)) return fail(400, 'Please enter a valid email address.');
   if (!/^[0-9()+\-. ]{7,25}$/.test(lead.phone) || (lead.phone.match(/\d/g) || []).length < 7) return fail(400, 'Please enter a valid phone number.');
+  if (!/^\d{1,4}$/.test(lead.quantity) || Number(lead.quantity) < 1) return fail(400, 'Please enter the number of boxes as a whole number (1 or more).');
   if (/https?:\/\/\S+/.test(lead.full_name + lead.company)) return fail(400, 'Please remove links from your name and company.');
   let firstTouch = {}; let lastTouch = {};
   try { firstTouch = JSON.parse(clean(form.get('first_touch'), 4000) || '{}'); } catch { /* ignore */ }

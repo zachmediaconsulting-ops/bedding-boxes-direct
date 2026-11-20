@@ -18,16 +18,16 @@ const ENV = { RESEND_API_KEY: 'k', LEAD_TO: 'sales@example.com', LEAD_FROM: 'Lea
 let ip = 0;
 function req(fields, { sizes = ['9 yd'], ipAddr } = {}) {
   const fd = new FormData();
-  const base = { full_name: 'Pat Smith', company: 'Acme Utility', email: `pat${Math.random()}@acme.com`, phone: '(555) 123-4567', state: 'Ohio', customer_type: 'Utility Contractor', quantity: '10–19 boxes (10-box bundle)', message: 'Need boxes', platform: 'meta', campaign_audience: 'utility_contractors', landing_page_path: '/meta/utility-contractors/', utm_source: 'facebook', fbclid: 'abc', ...fields };
+  const base = { full_name: 'Pat Smith', company: 'Acme Utility', email: `pat${Math.random()}@acme.com`, phone: '(555) 123-4567', state: 'Ohio', customer_type: 'Utility Contractor', quantity: '10', dropoff_address: '123 Main St, Columbus, OH 43215', message: 'Need boxes', platform: 'meta', campaign_audience: 'utility_contractors', landing_page_path: '/meta/utility-contractors/', utm_source: 'facebook', fbclid: 'abc', ...fields };
   for (const [k, v] of Object.entries(base)) fd.append(k, v);
   sizes.forEach((s) => fd.append('sizes', s));
   return new Request('https://x/api/lead', { method: 'POST', body: fd, headers: { 'cf-connecting-ip': ipAddr || `10.0.0.${++ip}` } });
 }
 
 test('subject line follows NEW LEAD | PLATFORM | AUDIENCE | QTY INQUIRY', () => {
-  assert.equal(subjectFor({ platform: 'meta', campaign_audience: 'utility_contractors', quantity: '10–19 boxes (10-box bundle)' }), 'NEW LEAD | META | UTILITY CONTRACTORS | 10 BOX INQUIRY');
-  assert.equal(subjectFor({ platform: 'google_ads', campaign_audience: 'rental_fleet', quantity: '20 boxes (20-box bundle)' }), 'NEW LEAD | GOOGLE ADS | RENTAL FLEET | 20 BOX INQUIRY');
-  assert.equal(subjectFor({ platform: 'organic_search', customer_type: 'Municipality / Public Works', quantity: '1 box' }), 'NEW LEAD | ORGANIC SEARCH | MUNICIPALITY / PUBLIC WORKS | 1 BOX INQUIRY');
+  assert.equal(subjectFor({ platform: 'meta', campaign_audience: 'utility_contractors', quantity: '10' }), 'NEW LEAD | META | UTILITY CONTRACTORS | 10 BOX INQUIRY');
+  assert.equal(subjectFor({ platform: 'google_ads', campaign_audience: 'rental_fleet', quantity: '20' }), 'NEW LEAD | GOOGLE ADS | RENTAL FLEET | 20 BOX INQUIRY');
+  assert.equal(subjectFor({ platform: 'organic_search', customer_type: 'Municipality / Public Works', quantity: '1' }), 'NEW LEAD | ORGANIC SEARCH | MUNICIPALITY / PUBLIC WORKS | 1 BOX INQUIRY');
 });
 
 test('valid lead is emailed with attribution and returns an id', async () => {
@@ -48,6 +48,17 @@ test('never claims success when the email provider fails', async () => {
   globalThis.fetch = async () => new Response('nope', { status: 500 });
   const res = await onRequestPost({ request: req({}), env: ENV });
   assert.equal(res.status, 502); assert.equal((await res.json()).ok, false);
+});
+
+test('requires a drop-off address and a whole-number quantity', async () => {
+  let res = await onRequestPost({ request: req({ dropoff_address: '' }), env: ENV });
+  assert.equal(res.status, 400); assert.match((await res.json()).error, /Drop-off address/);
+  res = await onRequestPost({ request: req({ quantity: 'ten' }), env: ENV });
+  assert.equal(res.status, 400); assert.match((await res.json()).error, /number of boxes/);
+  res = await onRequestPost({ request: req({ quantity: '37' }), env: ENV });
+  assert.equal(res.status, 200);
+  assert.match(JSON.parse(sent.at(-1).body).subject, /37 BOX INQUIRY$/);
+  assert.match(JSON.parse(sent.at(-1).body).text, /Drop-off address: 123 Main St, Columbus, OH 43215/);
 });
 
 test('rejects missing required fields and bad email', async () => {

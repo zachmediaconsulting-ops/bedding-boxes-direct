@@ -35,7 +35,7 @@ export const CAMPAIGNS = [
     stats: [['10 boxes', 'save 5%'], ['20 boxes', 'save 7%'], ['20+', 'fleet pricing'], ['USA', 'made with American steel']],
     benefitsTitle: 'Built to Stay Rented',
     benefits: [['Less time in the repair bay', 'Reinforced corners and thicker sidewalls reduce wear and extend lifespan.'], ['Easy for every renter', 'Grab/push bars and skid plates make placement simple.'], ['Your brand on the job site', 'Custom paint colors available upon request.']],
-    caseLabel: 'Contractor Bills for Use', formTitle: 'Get Fleet Pricing', quantity: '10–19 boxes (10-box bundle)',
+    caseLabel: 'Contractor Bills for Use', formTitle: 'Get Fleet Pricing', quantity: '10',
   },
   {
     path: '/linkedin/utility-contractors/', platform: 'linkedin', audience: 'utility_contractors', platformLabel: 'LinkedIn',
@@ -63,7 +63,7 @@ export const CAMPAIGNS = [
     stats: [['10 / 20', 'box bundles'], ['5–7%', 'savings'], ['20+', 'custom fleet terms'], ['USA', 'made with American steel']],
     benefitsTitle: 'Fleet Economics',
     benefits: [['Asset longevity', 'Thicker gauge sidewalls and reinforced corners resist the wear that retires boxes early.'], ['Utilization', 'Seven standard sizes with published machine ranges make it easy to match renters to boxes.'], ['Revenue potential', 'Contractors already bill bedding boxes like trench shields; one customer reported billing $200/day per box on municipal invoices.']],
-    caseLabel: 'Contractor Bills for Use', formTitle: 'Discuss Your Fleet Requirements', quantity: '20 boxes (20-box bundle)',
+    caseLabel: 'Contractor Bills for Use', formTitle: 'Discuss Your Fleet Requirements', quantity: '20',
   },
   {
     path: '/googlead/utility-contractor/', platform: 'google_ads', audience: 'utility_contractors', platformLabel: 'Google Ads',
@@ -91,6 +91,6 @@ export const CAMPAIGNS = [
     stats: [['10 boxes', 'save 5%'], ['20 boxes', 'save 7%'], ['20+', 'fleet terms'], ['48', 'states served']],
     benefitsTitle: 'Fleet Purchasing Made Simple',
     benefits: [['One quote, many sizes', 'Choose any mix of 3 to 18 yard boxes.'], ['Durable rental assets', 'Heavier steel and reinforced construction for repeated use.'], ['Coordinated shipping', 'One shipment or split deliveries to your branches.']],
-    caseLabel: 'Contractor Bills for Use', formTitle: 'Request Fleet Pricing', quantity: '10–19 boxes (10-box bundle)', showPrices: true,
+    caseLabel: 'Contractor Bills for Use', formTitle: 'Request Fleet Pricing', quantity: '10', showPrices: true,
   },
 ];

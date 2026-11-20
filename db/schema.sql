@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS leads (
   id TEXT PRIMARY KEY,
   created_at INTEGER NOT NULL,          -- unix ms
   subject TEXT,
-  full_name TEXT, company TEXT, email TEXT, phone TEXT, state TEXT, customer_type TEXT,
+  full_name TEXT, company TEXT, email TEXT, phone TEXT, state TEXT, dropoff_address TEXT, customer_type TEXT,
   sizes TEXT, quantity TEXT, timeline TEXT, message TEXT,
   platform TEXT, campaign_audience TEXT, inquiry_type TEXT, form_id TEXT,
   landing_page_url TEXT, landing_page_path TEXT, form_page_url TEXT, form_page_path TEXT, referrer TEXT,

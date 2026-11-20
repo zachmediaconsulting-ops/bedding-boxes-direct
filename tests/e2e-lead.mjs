@@ -38,7 +38,7 @@ try {
   await f.locator('[name=phone]').fill('(555) 010-2000');
   await f.locator('[name=state]').selectOption('Ohio');
   await f.locator('[name=customer_type]').selectOption('Utility Contractor');
-  await f.locator('[name=quantity]').selectOption('10–19 boxes (10-box bundle)');
+  await f.locator('[name=quantity]').fill('10'); await f.locator('[name=dropoff_address]').fill('123 Main St, Columbus, OH 43215');
   assert.equal(await f.locator('input[value="12 yd"]').isChecked(), true, 'size preselected from ?size=12');
   await f.locator('[name=message]').fill('E2E test lead');
   await Promise.all([page.waitForURL(/\/thank-you\//), f.locator('button[type=submit]').click()]);
@@ -62,7 +62,7 @@ try {
   // 3. Same details again within 30 minutes: duplicate protection, no second email.
   await page.goto(`${base}/request-a-quote/?size=12`);
   for (const [n, v] of [['full_name', 'Pat Tester'], ['company', 'Test Utility Co'], ['email', 'pat@example.com'], ['phone', '(555) 010-2000'], ['message', 'E2E test lead']]) await f.locator(`[name=${n}]`).fill(v);
-  await f.locator('[name=state]').selectOption('Ohio'); await f.locator('[name=customer_type]').selectOption('Utility Contractor'); await f.locator('[name=quantity]').selectOption('10–19 boxes (10-box bundle)');
+  await f.locator('[name=state]').selectOption('Ohio'); await f.locator('[name=customer_type]').selectOption('Utility Contractor'); await f.locator('[name=quantity]').fill('10'); await f.locator('[name=dropoff_address]').fill('123 Main St, Columbus, OH 43215');
   await Promise.all([page.waitForURL(/\/thank-you\//), f.locator('button[type=submit]').click()]);
   assert.equal(emails.length, 1, 'duplicate not emailed twice');
   console.log('✓ duplicate submission suppressed');
