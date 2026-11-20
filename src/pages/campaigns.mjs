@@ -29,7 +29,7 @@ function campaignPage(d) {
       // Same "Buy More. Save More." section as the rest of the site; buttons stay on this page (jump to the form).
       bundleTeaser(BUNDLES).replace(/href="[^"]*(?:request-a-quote|fleet-bedding-box-bundles)[^"]*"/g, 'href="#get-quote"'),
       // All sizes: photo, name and price only (no buttons/badges) — on every ad page, right below the multi-box deals.
-      `<section class="section section--gray"><div class="box">${sectionHead({ title: 'Sizes & [Prices]' })}<div class="products">${PRODUCTS.map((p) => `<div class="product-card product-card--simple">${img(p.image, `${p.size} yard bedding box`, { sizes: '(max-width: 767px) 100vw, 300px' })}<div class="product-card__body"><h3>${p.size} Yard Bedding Box</h3><p class="product-card__price">${priceText(p)}</p></div></div>`).join('')}</div></div></section>`,
+      `<section class="section"><div class="box">${sectionHead({ title: 'Sizes & [Prices]' })}<div class="products">${PRODUCTS.map((p) => `<div class="product-card product-card--simple">${img(p.image, `${p.size} yard bedding box`, { sizes: '(max-width: 767px) 100vw, 300px' })}<div class="product-card__body"><h3>${p.size} Yard Bedding Box</h3><p class="product-card__price">${priceText(p)}</p></div></div>`).join('')}</div></div></section>`,
       `<section class="section"><div class="box">
         ${sectionHead({ title: d.benefitsTitle })}
         <div class="grid-3">${d.benefits.map(([h, p]) => `<div class="card"><h3>${esc(h)}</h3><p>${esc(p)}</p></div>`).join('')}</div>
