@@ -28,6 +28,21 @@ function sizePage(p) {
     path: p.path, label: `${p.size} Yard Bedding Box`, h1: p.h1, title: p.title, description: p.description,
     crumbs: [SHOP], image: p.image, ogImage: p.image, summary: p.summary,
     track: '', productSize: p.size,
+    // Product structured data (Google "product snippets": product pages without an online checkout).
+    // Only facts shown on the page: name, summary, photos, published price, stock note and shipping weight.
+    schema: () => ({
+      '@context': 'https://schema.org', '@type': 'Product', '@id': `${SITE.url}${p.path}#product`,
+      name: p.h1, description: p.summary, url: SITE.url + p.path,
+      image: p.gallery.filter(([n]) => !n.includes('specifications')).map(([n]) => SITE.url + imageUrl(n)),
+      brand: { '@type': 'Brand', name: SITE.name },
+      manufacturer: { '@id': `${SITE.url}/#organization` },
+      weight: { '@type': 'QuantitativeValue', value: s.weight, unitCode: 'LBR' },
+      ...(p.price ? { offers: {
+        '@type': 'Offer', url: SITE.url + p.path, price: p.price.toFixed(2), priceCurrency: 'USD',
+        ...(p.inStock ? { availability: 'https://schema.org/InStock' } : {}),
+        seller: { '@id': `${SITE.url}/#organization` },
+      } } : {}),
+    }),
     render: (c) => join([
       `<section class="section section--tight"><div class="box product-hero">
         <div class="gallery">
