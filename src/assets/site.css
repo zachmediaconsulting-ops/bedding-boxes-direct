@@ -556,3 +556,8 @@ ul, ol { padding-left: 1.3em; }
 .phone-pair .btn { flex-direction: row; gap: .45em; line-height: 1.2; }
 .phone-pair__note { margin: 0; font-size: 14px; color: var(--text); text-align: center; }
 .cta-band--red .phone-pair__note, .section--red .phone-pair__note, .card--red .phone-pair__note { color: #fff; }
+@media (min-width: 1100px) {
+  .mega__grid--third { grid-template-columns: 1fr 2fr; }
+  .mega__grid--third .mega__body { padding: 24px 64px; }
+  .mega__grid--third .mega__links--2col { column-gap: 48px; }
+}

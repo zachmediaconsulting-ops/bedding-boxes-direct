@@ -14,9 +14,9 @@ function megaPanel(g, path) {
   const m = g.mega;
   const links = (cls = 'mega__links') => `<ul class="${cls}">${g.items.map((x) => `<li${/^All /.test(x.label) ? ' class="mega__all"' : ''}><a href="${x.href}"${cur(x.href, path)}>${esc(x.label)}</a></li>`).join('')}</ul>`;
   if (m.type === 'image') {
-    return `<div class="mega__grid mega__grid--image">
+    return `<div class="mega__grid mega__grid--image${m.layout === 'third' ? ' mega__grid--third' : ''}">
       <div class="mega__media">${img(m.image, m.alt, { sizes: '66vw' })}</div>
-      <div class="mega__body"><a class="mega__title" href="${g.href}">${esc(m.title)} <span aria-hidden="true">›</span></a>${links(g.items.length > 9 ? 'mega__links mega__links--2col' : 'mega__links')}</div>
+      <div class="mega__body"><a class="mega__title" href="${g.href}">${esc(m.title)} <span aria-hidden="true">›</span></a>${links(g.items.length > 9 || m.layout === 'third' ? 'mega__links mega__links--2col' : 'mega__links')}</div>
     </div>`;
   }
   if (m.type === 'deals') {

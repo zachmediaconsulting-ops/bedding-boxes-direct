@@ -1,6 +1,7 @@
 // MAIN MENU and FOOTER LINKS. Edit labels/order here. Every href must be a page that exists
 // (the build fails on broken links). Campaign (ad) pages are never added to the menu.
 import { PRODUCTS } from '../data/products.mjs';
+import { INDUSTRIES } from './industries.mjs';
 
 export const NAV = [
   { label: 'Home', href: '/' },
@@ -17,17 +18,14 @@ export const NAV = [
   },
   {
     label: 'Industries', href: '/industries/',
-    mega: { type: 'image', image: 'what-are-bedding-boxes-used-for', alt: 'Excavator digging a utility trench', title: 'Industries We Serve' },
+    mega: { type: 'image', layout: 'third', image: 'what-are-bedding-boxes-used-for', alt: 'Excavator digging a utility trench', title: 'Industries We Serve' },
+    // Same pages, order and names as the footer sitemap's Industries column.
     items: [
+      { label: 'All Industries', href: '/industries/' },
       { label: 'Utility Contractors', href: '/bedding-boxes-for-utility-companies/' },
-      { label: 'Equipment Rental Fleets', href: '/industries/equipment-rental-fleets/' },
-      { label: 'Underground Utilities', href: '/industries/underground-utility-construction/' },
-      { label: 'Water & Sewer', href: '/industries/water-sewer-contractors/' },
-      { label: 'Pipeline', href: '/industries/pipeline-contractors/' },
-      { label: 'Excavation', href: '/industries/excavation-contractors/' },
       { label: 'Trenching', href: '/bedding-boxes-for-trenching/' },
       { label: 'Municipalities', href: '/bedding-boxes-for-municipalities/' },
-      { label: 'All Industries', href: '/industries/' },
+      ...INDUSTRIES.map((i) => ({ label: i.label, href: i.path })),
     ],
   },
   {
@@ -82,7 +80,6 @@ export const LEGAL = [['Privacy Policy', '/privacy-policy/'], ['Return & Refund 
 
 // FOOTER SITE DIRECTORY — every public page, so all pages are reachable from the footer.
 // The build fails if a page is missing here (except ad landing pages, thank-you and 404).
-import { INDUSTRIES } from './industries.mjs';
 import { US_STATES, statePath } from '../data/states.mjs';
 
 export const DIRECTORY = [
